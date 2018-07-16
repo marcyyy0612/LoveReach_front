@@ -1,0 +1,38 @@
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+    <title>tinder</title>
+  </head>
+  <body>
+    <div class="container"> 
+      <div class="left_wrap">
+        <mat-card>
+          <mat-card-content>
+            <button mat-button *ngIf="showFlg" (click)="onPartnersButton()">←</button>
+            <button mat-button (click)="onProfileButton()">自己プロフィール</button>
+          </mat-card-content>
+        </mat-card>
+        <div *ngIf="showFlg">
+          <app-profile-list></app-profile-list><!-- デフォルト，フォルスだから消えている -->
+        </div>
+        <div [hidden]="showFlg">
+          <app-messages-list (messageToSelectedUser)="messageToSelectedUser($event)"></app-messages-list><!-- デフォルト，フォルスだから表示されている -->
+        </div>
+      </div>
+      <div class="right_wrap">
+        <div [ngSwitch]="mode">
+          <div *ngSwitchCase="'stores'">
+            <app-stores></app-stores>
+          </div>
+          <div *ngSwitchCase="'profile'">
+            <app-profile></app-profile>
+          </div>
+          <div *ngSwitchCase="'messages'">
+            <app-messages [selectedUser]="selectedUser" (toStoreFromMessages)="toStoreFromMessages($event)"></app-messages>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+

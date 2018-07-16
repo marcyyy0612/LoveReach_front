@@ -1,0 +1,14 @@
+<div mat-dialog-content>
+  <div>
+    メールアドレス
+    <input matInput [(ngModel)]="data.mailAddress">
+  </div>
+  <div>
+    パスワード
+    <input matInput [(ngModel)]="data.password">
+  </div>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onSignupButton()">SignUp</button>
+  <button mat-button (click)="onOkClick(data)">Ok</button>
+</div>

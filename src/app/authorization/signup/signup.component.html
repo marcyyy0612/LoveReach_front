@@ -1,0 +1,36 @@
+<div mat-dialog-content>
+  <div>
+    ユーザ名
+    <input matInput [(ngModel)]="data.userName">
+  </div>
+  <div>
+    性別
+    <mat-button-toggle-group name="sex" aria-label="sex">
+      <mat-button-toggle value="bold">male</mat-button-toggle>
+      <mat-button-toggle value="italic">female</mat-button-toggle>
+    </mat-button-toggle-group>
+  </div>
+  <div>
+    誕生日
+    <input matInput [(ngModel)]="data.birthday">
+  </div>
+  <div>
+    <input type="file"(change)="selectedFile($event)">
+  </div>
+  <div>
+    ひとこと
+    <input matInput [(ngModel)]="data.profile">
+  </div>
+  <div>
+    メールアドレス
+    <input matInput [(ngModel)]="data.mailAddress">
+  </div>
+  <div>
+    パスワード
+    <input matInput [(ngModel)]="data.password">
+  </div>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onSigninButton()">ログイン</button>
+  <button mat-button (click)="onOkClick(data)">Ok</button>
+</div>

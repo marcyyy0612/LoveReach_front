@@ -1,0 +1,6 @@
+<button mat-mini-fab (click)="onNoClick()">×</button>
+<h1 mat-dialog-title>さあ始めよう</h1>
+<app-signin (toSignup)="toSignup()" [hidden]="signupMode"></app-signin>
+<div *ngIf='signupMode'>
+  <app-signup (toSignin)="toSignin()"></app-signup>
+</div>

@@ -1,0 +1,12 @@
+<div>
+  <div (swipeleft)="swipe($event.type)" (swiperight)="swipe($event.type)">
+    <mat-card class="card">
+      <img mat-card-image src="{{imgPath}}" onMouseDown="return false;" onSelectStart="return false" oncontextmenu="return false;">
+      <mat-card-content>
+        <div class="userName" *ngIf="users">{{userName}}</div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <button mat-button (click)="selectMatching(0)">nope</button>
+  <button mat-button (click)="selectMatching(1)">like</button>
+</div>

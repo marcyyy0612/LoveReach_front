@@ -1,0 +1,10 @@
+<div>{{userName}}
+  <button mat-button (click)="onBackClick()">戻る</button>
+</div>
+<div *ngFor="let message of messages"> 
+  messages: {{message}}
+</div>
+<div>
+  <input matInput name="message" [(ngModel)]="sendMessage">
+  <button mat-button (click)="onSendClick()">送信</button>
+</div>

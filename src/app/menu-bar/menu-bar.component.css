@@ -1,0 +1,11 @@
+button.signinButton {
+  background-color: #EB5D6B;
+  font-weight: bold;
+  color: #fff;
+}
+
+button.signupButton {
+  /* background-color: #EB5D6B; */
+  font-weight: bold;
+  color: #000;
+}

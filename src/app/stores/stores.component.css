@@ -1,0 +1,12 @@
+.card {
+  width: 40%;
+}
+
+.selectButton {
+  position: absolute;
+  top: 1000;
+  bottom: 100;
+  right: 100;
+  left: 100;
+  margin: auto;
+}
