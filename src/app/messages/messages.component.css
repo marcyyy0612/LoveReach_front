@@ -10,9 +10,17 @@
   text-align: left;
 }
 
-.inputArea {
+.input-area {
   width: 80%;
   margin: 0 auto;
   position: absolute;
   bottom: 0;
+}
+
+.dateTime {
+  font-size: x-small;
+}
+
+.back-button {
+  float: right;
 }

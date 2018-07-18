@@ -18,7 +18,7 @@ export class MenuBarComponent {
     const dialog = this.matDialog.open(AuthorizationComponent, {
       'data' : {'title': 'Authorization'},
       'height' : '500px',
-      'width' : '300px',
+      'width' : '350px',
       'disableClose' : false
     });
     dialog.afterClosed();

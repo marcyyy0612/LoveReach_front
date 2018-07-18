@@ -8,8 +8,8 @@ import { ProfileService } from './profile.service';
 })
 export class ProfileComponent implements OnInit {
 
-  private myProfileImg: string;
   private myInfo;
+  private myProfileImg: string;
   constructor(private profileService: ProfileService) { }
 
   ngOnInit() {
@@ -20,7 +20,8 @@ export class ProfileComponent implements OnInit {
     const imgName = 'user1.jpg';
     this.profileService.getMyInfo().subscribe ( response => {
       this.myInfo = response['Me'][0];
-        console.log(this.myInfo['PROFILE_IMAGE']);
+      console.log(this.myInfo);
+        // console.log(this.myInfo['PROFILE_IMAGE']);
       this.myProfileImg = this.profileService.getMyProfileImg(imgName);
     });
   }

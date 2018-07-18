@@ -1,33 +1,34 @@
 <div mat-dialog-content>
   <div>
     ユーザ名
-    <input matInput [(ngModel)]="data.userName">
+    <input matInput class="right" [(ngModel)]="data.userName">
   </div>
-  <div>
+  <div class="dialog">
     性別
-    <mat-button-toggle-group name="sex" aria-label="sex">
-      <mat-button-toggle value="bold">male</mat-button-toggle>
-      <mat-button-toggle value="italic">female</mat-button-toggle>
+    <mat-button-toggle-group class="toggle-button" name="sex" aria-label="sex" [(ngModel)]="data.sex">
+      <mat-button-toggle value=1>♂</mat-button-toggle>
+      <mat-button-toggle value=2>♀</mat-button-toggle>
     </mat-button-toggle-group>
   </div>
-  <div>
+  <div class="dialog">
     誕生日
-    <input matInput [(ngModel)]="data.birthday">
+    <input matInput class="right" type="date" [(ngModel)]="data.birthday">
   </div>
-  <div>
-    <input type="file"(change)="selectedFile($event)">
+  <div class="dialog">
+    写真
+    <input class="right" type="file" accept="image/jpeg, image/png" (change)="selectedFile($event)">
   </div>
-  <div>
+  <div class="dialog">
     ひとこと
-    <input matInput [(ngModel)]="data.profile">
+    <input matInput class="right" [(ngModel)]="data.profile">
   </div>
-  <div>
+  <div class="dialog">
     メールアドレス
-    <input matInput [(ngModel)]="data.mailAddress">
+    <input matInput class="right" [(ngModel)]="data.mailAddress">
   </div>
-  <div>
+  <div class="dialog">
     パスワード
-    <input matInput [(ngModel)]="data.password">
+    <input matInput class="right" type="password" [(ngModel)]="data.password">
   </div>
 </div>
 <div mat-dialog-actions>

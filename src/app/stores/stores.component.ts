@@ -15,6 +15,7 @@ export class StoresComponent implements OnInit {
   private userName: string;
   private imgPath: string;
   private selectedCount = 0;
+  private imgPaths: Array<string> = new Array();
 
   constructor(private storesService: StoresService) { }
 
@@ -37,6 +38,7 @@ export class StoresComponent implements OnInit {
   getUsersImage(imgName: string): string {
     return this.storesService.getUsersImgPath(imgName);
   }
+
   selectMatching(status: number) {
     this.storesService.insertMatchingStatus(this.userId, status);
     this.selectedCount++;

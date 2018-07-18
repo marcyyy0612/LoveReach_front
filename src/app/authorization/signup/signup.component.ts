@@ -31,15 +31,16 @@ export class SignupComponent {
   }
 
   onOkClick(data): void {
-    this.signupService.trySignup(data).subscribe(response => {
-      this.upload();
-      this.dialogRef.close();
-      this.router.navigate(['/app/recs']);
-    },
-      error => {
-        console.log('error');
-      }
-    );
+    console.log(data);
+    // this.signupService.trySignup(data).subscribe(response => {
+    //   this.upload();
+    //   this.dialogRef.close();
+    //   this.router.navigate(['/app/recs']);
+    // },
+    //   error => {
+    //     console.log('error');
+    //   }
+    // );
   }
 
   upload() {

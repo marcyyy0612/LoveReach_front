@@ -1,0 +1,17 @@
+.right {
+  float: right;
+}
+
+.left {
+  float: left;
+}
+
+.toggle-button {
+  float: right;
+  /* width: 30px; */
+  height: 30px;
+}
+
+.dialog {
+  line-height: 2;
+}
