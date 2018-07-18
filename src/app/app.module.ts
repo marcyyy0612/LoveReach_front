@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HttpClientXsrfModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { CookieService } from 'ngx-cookie-service';
 import {
   MatCheckboxModule,
   MatRadioModule,
@@ -32,8 +33,6 @@ import { AuthorizationComponent } from './authorization/authorization.component'
 const appRoutes: Routes = [
   { path: '', component: TopComponent },
   { path: 'app/recs', component: RecsComponent },
-  { path: 'app/profile', component: ProfileComponent },
-  { path: 'app/messages', component: MessagesComponent},
   { path: '**', redirectTo: '', pathMatch: 'full'}
 ];
 
@@ -74,7 +73,7 @@ const appRoutes: Routes = [
     MatDialogModule,
     MatListModule
   ],
-  providers: [],
+  providers: [CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

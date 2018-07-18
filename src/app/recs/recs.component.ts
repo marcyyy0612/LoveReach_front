@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgSwitch } from '@angular/common';
+import { CookieService } from 'ngx-cookie-service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-recs',
@@ -11,9 +13,14 @@ export class RecsComponent implements OnInit {
   private mode: string;
   private showFlg: boolean;
   private selectedUser: Object;
-  constructor() { }
+  constructor( private cookieService: CookieService,
+    private router: Router) { }
 
   ngOnInit() {
+    console.log(this.cookieService.get('PLAY_SESSION_CSRF'));
+    if (!this.cookieService.check('PLAY_SESSION_CSRF')) {
+      this.router.navigate(['/']);
+    }
     this.mode = 'stores';
   }
 

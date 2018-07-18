@@ -26,6 +26,7 @@ export class StoresComponent implements OnInit {
   setStoresUser() {
     this.storesService.getStoresUser().subscribe(response => {
       console.log(response);
+      this.getCurrentLocation();
       if (response['result'] !== 'failure') {
         this.users = response;
         this.userId = this.users['USERS'][0]['USER_ID'];
@@ -33,6 +34,16 @@ export class StoresComponent implements OnInit {
         this.userName = this.users['USERS'][0]['USER_NAME'];
       }
     });
+  }
+
+  getCurrentLocation(): Map<string, number> {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(function(position) {
+        return new Map([['latitude', position.coords.latitude], ['longitude', position.coords.longitude]]);
+      });
+    } else {
+        return new Map([['latitude', 0], ['longitude', 0]]);
+    }
   }
 
   getUsersImage(imgName: string): string {
