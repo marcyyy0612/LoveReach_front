@@ -15,6 +15,7 @@ export class StoresComponent implements OnInit {
   private userName: string;
   private imgPath: string;
   private selectedCount = 0;
+  private profile: string;
   private imgPaths: Array<string> = new Array();
 
   constructor(private storesService: StoresService) { }
@@ -30,8 +31,10 @@ export class StoresComponent implements OnInit {
       if (response['result'] !== 'failure') {
         this.users = response;
         this.userId = this.users['USERS'][0]['USER_ID'];
-        this.imgPath = this.getUsersImage(this.users['USERS'][0]['PROFILE_IMAGE']);
+        // this.imgPath = this.getUsersImage(this.users['USERS'][0]['PROFILE_IMAGE']);
+        this.imgPath = './assets/images/sample1.jpg';
         this.userName = this.users['USERS'][0]['USER_NAME'];
+        this.profile = this.users['USERS'][0]['PROFILE'];
       }
     });
   }
@@ -54,8 +57,10 @@ export class StoresComponent implements OnInit {
     this.storesService.insertMatchingStatus(this.userId, status);
     this.selectedCount++;
     this.userId = this.users['USERS'][this.selectedCount]['USER_ID'];
-    this.imgPath = this.getUsersImage(this.users['USERS'][this.selectedCount]['PROFILE_IMAGE']);
+    // this.imgPath = this.getUsersImage(this.users['USERS'][this.selectedCount]['PROFILE_IMAGE']);
+    this.imgPath = './assets/images/sample1.jpg';
     this.userName = this.users['USERS'][this.selectedCount]['USER_NAME'];
+    this.profile = this.users['USERS'][this.selectedCount]['PROFILE'];
   }
 
   swipe(action = this.SWIPE_ACTION.RIGHT) {

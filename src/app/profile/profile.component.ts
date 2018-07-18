@@ -20,9 +20,8 @@ export class ProfileComponent implements OnInit {
     const imgName = 'user1.jpg';
     this.profileService.getMyInfo().subscribe ( response => {
       this.myInfo = response['Me'][0];
-      console.log(this.myInfo);
-        // console.log(this.myInfo['PROFILE_IMAGE']);
-      this.myProfileImg = this.profileService.getMyProfileImg(imgName);
+      // this.myProfileImg = this.profileService.getMyProfileImg(imgName);
+      this.myProfileImg = './assets/images/sample1.jpg';
     });
   }
 

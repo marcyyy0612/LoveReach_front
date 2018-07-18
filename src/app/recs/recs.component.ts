@@ -17,14 +17,14 @@ export class RecsComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit() {
-    console.log(this.cookieService.get('PLAY_SESSION_CSRF'));
+    // console.log(this.cookieService.getAll());
     if (!this.cookieService.check('PLAY_SESSION_CSRF')) {
       this.router.navigate(['/']);
     }
     this.mode = 'stores';
   }
 
-  onPartnersButton() {
+  onBackButton() {
     this.mode = 'stores';
     this.showFlg = false;
   }

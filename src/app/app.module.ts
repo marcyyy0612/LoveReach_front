@@ -49,7 +49,7 @@ const appRoutes: Routes = [
     StoresComponent,
     MessagesListComponent,
     ProfileListComponent,
-    AuthorizationComponent
+    AuthorizationComponent,
   ],
   entryComponents: [
     AuthorizationComponent

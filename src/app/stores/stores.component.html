@@ -1,9 +1,10 @@
-<div>
+<div class="store">
   <div (swipeleft)="swipe($event.type)" (swiperight)="swipe($event.type)">
     <mat-card class="card">
       <img mat-card-image src="{{imgPath}}" onMouseDown="return false;" onSelectStart="return false" oncontextmenu="return false;">
       <mat-card-content>
         <div class="userName" *ngIf="users">{{userName}}</div>
+        <div class="userName" *ngIf="users">{{profile}}</div>
       </mat-card-content>
     </mat-card>
   </div>

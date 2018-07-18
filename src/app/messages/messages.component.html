@@ -1,29 +1,41 @@
-<div>{{partnerName}}
-  <div class="back-button">
-    <button mat-button (click)="onBackClick()">戻る</button>
-  </div>
-</div>
-<div *ngFor="let message of messages"> 
-  <div *ngIf="message['USER_ID'] === myInfo['USER_ID']">
-    <mat-card class="me">
-      {{message['MESSAGE']}}
-      <div class="dateTime">
-        {{message['SEND_DATETIME']}}
+<div class="container"> 
+  <div class="left_wrap">
+    <mat-card>
+      <img mat-card-avatar src="./assets/images/sample1.jpg">
+      {{partnerName}}さんにメッセージを送りましょう！
+      <div class="back-button">
+        <button mat-button (click)="onBackClick()">←</button>
       </div>
     </mat-card>
-  </div>
-  <div *ngIf="message['USER_ID'] !== myInfo['USER_ID']">
-    <mat-card class="partner">
-      {{message['MESSAGE']}}
-      <div class="dateTime">
-        {{message['SEND_DATETIME']}}
+    <div *ngFor="let message of messages"> 
+      <div *ngIf="message['USER_ID'] === myInfo['USER_ID']">
+        <mat-card class="me">
+          {{message['MESSAGE']}}
+          <div class="dateTime">
+            {{message['SEND_DATETIME']}}
+          </div>
+        </mat-card>
       </div>
+      <div *ngIf="message['USER_ID'] !== myInfo['USER_ID']">
+        <mat-card class="partner">
+          {{message['MESSAGE']}}
+          <div class="dateTime">
+            {{message['SEND_DATETIME']}}
+          </div>
+        </mat-card>
+      </div>
+    </div>
+    <mat-card class="bottom-area">
+      <input matInput class="input-area" name="message" placeholder="メッセージを入力..." [(ngModel)]="sendMessage">
+      <button mat-button class="send-button" (click)="onSendClick()">送信</button>
     </mat-card>
   </div>
-</div>
-<div>
-  <mat-card class="input-area">
-    <input matInput name="message" [(ngModel)]="sendMessage">
-    <button mat-button (click)="onSendClick()">送信</button>
-  </mat-card>
+  <div class="right_wrap">
+    <mat-card class="card">
+      <img mat-card-image src="./assets/images/sample1.jpg" onMouseDown="return false;" onSelectStart="return false" oncontextmenu="return false;">
+      <mat-card-content>
+        <div class="userName">{{selectedUser['USER_NAME']}}</div>
+      </mat-card-content>
+    </mat-card>
+  </div>
 </div>

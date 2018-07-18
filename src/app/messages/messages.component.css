@@ -10,17 +10,50 @@
   text-align: left;
 }
 
-.input-area {
-  width: 80%;
-  margin: 0 auto;
-  position: absolute;
-  bottom: 0;
-}
-
 .dateTime {
   font-size: x-small;
 }
 
 .back-button {
+  float: right;
+}
+
+.bottom-area {
+  width: 40%;
+  margin: 0 auto;
+  position: absolute;
+  bottom: 0;
+}
+
+.input-area {
+  font-size:100%;
+  width: 80%;
+}
+
+.send-button {
+  background-color: #EB5D6B;
+  font-weight: bold;
+  color: #fff;
+  border-radius:20px;
+  /* float: right; */
+}
+
+.container {
+  width: max-width;
+  margin: auto; 
+}
+.container:after { 
+  content:"";
+  display:block;
+  clear:both;
+}
+.left_wrap {
+  width: 60%;
+  height: 100%;
+  float: left;
+}
+.right_wrap {
+  width: 39%;
+  height: 100%;
   float: right;
 }
