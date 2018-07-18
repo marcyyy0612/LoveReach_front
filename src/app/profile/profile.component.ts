@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ProfileService } from './profile.Service';
+import { ProfileService } from './profile.service';
 
 @Component({
   selector: 'app-profile',
@@ -9,7 +9,7 @@ import { ProfileService } from './profile.Service';
 export class ProfileComponent implements OnInit {
 
   private myProfileImg: string;
-  private user;
+  private myInfo;
   constructor(private profileService: ProfileService) { }
 
   ngOnInit() {
@@ -18,9 +18,9 @@ export class ProfileComponent implements OnInit {
 
   setMyInfo() {
     const imgName = 'user1.jpg';
-    this.profileService.fetchMyInfo().subscribe ( response => {
-      this.user = response['Me'][0];
-        console.log(this.user['PROFILE_IMAGE']);
+    this.profileService.getMyInfo().subscribe ( response => {
+      this.myInfo = response['Me'][0];
+        console.log(this.myInfo['PROFILE_IMAGE']);
       this.myProfileImg = this.profileService.getMyProfileImg(imgName);
     });
   }

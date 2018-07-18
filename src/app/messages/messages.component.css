@@ -1,0 +1,18 @@
+.me {
+  width: 40%;
+  margin-left: auto;
+  text-align: left;
+}
+
+.partner {
+  width: 40%;
+  margin-right: auto;
+  text-align: left;
+}
+
+.inputArea {
+  width: 80%;
+  margin: 0 auto;
+  position: absolute;
+  bottom: 0;
+}

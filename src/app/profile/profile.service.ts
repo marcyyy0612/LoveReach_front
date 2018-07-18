@@ -21,7 +21,7 @@ export class ProfileService {
 
   constructor(private http: HttpClient) { }
 
-  fetchMyInfo(): Observable<UserObj> {
+  getMyInfo(): Observable<UserObj> {
     const url = '/api/users/me';
     return this.http.get<UserObj>(url);
   }

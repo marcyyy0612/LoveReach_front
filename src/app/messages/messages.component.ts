@@ -11,8 +11,9 @@ export class MessagesComponent implements OnChanges {
 
   constructor(private messagesService: MessagesService) { }
 
+  private myInfo;
   private partnerId: number;
-  private userName: string;
+  private partnerName: string;
   private messages: Array<Object>;
   private sendMessage: string;
   @Input() selectedUser: Object;
@@ -20,18 +21,21 @@ export class MessagesComponent implements OnChanges {
 
   ngOnChanges(change: SimpleChanges) {
     this.showMessages();
+    this.messagesService.getMyInfo().subscribe(response => {
+      this.myInfo = response['Me'][0];
+      console.log(this.myInfo);
+    });
   }
 
   showMessages(): void {
     this.messages = new Array();
     this.partnerId = this.selectedUser['USER_ID'];
-    this.userName = this.selectedUser['USER_NAME'];
+    this.partnerName = this.selectedUser['USER_NAME'];
     this.messagesService.getMessages(this.partnerId)
     .subscribe(response => {
-      console.log(response);
       if (response['MESSAGES'].length !== 0) {
         for (let i = 0; i < response['MESSAGES'].length; i++) {
-          this.messages.push(response['MESSAGES'][i]['MESSAGE']);
+          this.messages.push(response['MESSAGES'][i]);
         }
       }
     });
@@ -40,7 +44,6 @@ export class MessagesComponent implements OnChanges {
   onSendClick(): void {
     this.messagesService.sendMessages(this.sendMessage, this.partnerId)
     .subscribe(response => {
-      console.log(response);
       this.showMessages();
     });
   }

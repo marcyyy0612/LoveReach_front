@@ -2,9 +2,20 @@
   <button mat-button (click)="onBackClick()">戻る</button>
 </div>
 <div *ngFor="let message of messages"> 
-  messages: {{message}}
+  <div *ngIf="message['USER_ID'] === myInfo['USER_ID']">
+    <mat-card class="me">
+      {{message['MESSAGE']}}
+    </mat-card>
+  </div>
+  <div *ngIf="message['USER_ID'] !== myInfo['USER_ID']">
+    <mat-card class="partner">
+      {{message['MESSAGE']}}
+    </mat-card>
+  </div>
 </div>
 <div>
-  <input matInput name="message" [(ngModel)]="sendMessage">
-  <button mat-button (click)="onSendClick()">送信</button>
+  <mat-card class="inputArea">
+    <input matInput name="message" [(ngModel)]="sendMessage">
+    <button mat-button (click)="onSendClick()">送信</button>
+  </mat-card>
 </div>
