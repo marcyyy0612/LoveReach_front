@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { StoresService } from './stores.service';
+import { Router } from '@angular/router';
 import 'hammerjs';
 
 @Component({
@@ -17,8 +18,10 @@ export class StoresComponent implements OnInit {
   private selectedCount = 0;
   private profile: string;
   private imgPaths: Array<string> = new Array();
+  @Output() setMyAvatarEvent = new EventEmitter();
 
-  constructor(private storesService: StoresService) { }
+  constructor(private storesService: StoresService,
+    private router: Router) { }
 
   ngOnInit() {
     this.setStoresUser();
@@ -26,16 +29,16 @@ export class StoresComponent implements OnInit {
 
   setStoresUser() {
     this.storesService.getStoresUser().subscribe(response => {
-      console.log(response);
       this.getCurrentLocation();
       if (response['result'] !== 'failure') {
         this.users = response;
         this.userId = this.users['USERS'][0]['USER_ID'];
-        // this.imgPath = this.getUsersImage(this.users['USERS'][0]['PROFILE_IMAGE']);
-        this.imgPath = './assets/images/sample1.jpg';
+        this.imgPath = this.getUsersImage(this.users['USERS'][0]['PROFILE_IMAGE']);
         this.userName = this.users['USERS'][0]['USER_NAME'];
         this.profile = this.users['USERS'][0]['PROFILE'];
       }
+    }, error => {
+      this.router.navigate(['/']);
     });
   }
 
@@ -45,7 +48,7 @@ export class StoresComponent implements OnInit {
         return new Map([['latitude', position.coords.latitude], ['longitude', position.coords.longitude]]);
       });
     } else {
-        return new Map([['latitude', 0], ['longitude', 0]]);
+      return new Map([['latitude', 0], ['longitude', 0]]);
     }
   }
 
@@ -57,8 +60,7 @@ export class StoresComponent implements OnInit {
     this.storesService.insertMatchingStatus(this.userId, status);
     this.selectedCount++;
     this.userId = this.users['USERS'][this.selectedCount]['USER_ID'];
-    // this.imgPath = this.getUsersImage(this.users['USERS'][this.selectedCount]['PROFILE_IMAGE']);
-    this.imgPath = './assets/images/sample1.jpg';
+    this.imgPath = this.getUsersImage(this.users['USERS'][this.selectedCount]['PROFILE_IMAGE']);
     this.userName = this.users['USERS'][this.selectedCount]['USER_NAME'];
     this.profile = this.users['USERS'][this.selectedCount]['PROFILE'];
   }
@@ -70,6 +72,5 @@ export class StoresComponent implements OnInit {
     if (action === this.SWIPE_ACTION.RIGHT) {
       this.selectMatching(1);
     }
-
   }
 }

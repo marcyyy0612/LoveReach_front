@@ -14,7 +14,7 @@ export class MessagesComponent implements OnChanges {
   private myInfo;
   private partnerId: number;
   private partnerName: string;
-  private matchedDate: string;
+  private partnerImg: string;
   private messages: Array<Object>;
   private sendMessage: string;
   @Input() selectedUser: Object;
@@ -24,7 +24,6 @@ export class MessagesComponent implements OnChanges {
     this.showMessages();
     this.messagesService.getMyInfo().subscribe(response => {
       this.myInfo = response['Me'][0];
-      // console.log(this.myInfo);
     });
   }
 
@@ -32,6 +31,7 @@ export class MessagesComponent implements OnChanges {
     this.messages = new Array();
     this.partnerId = this.selectedUser['USER_ID'];
     this.partnerName = this.selectedUser['USER_NAME'];
+    this.partnerImg = this.selectedUser['PROFILE_IMAGE'];
     this.messagesService.getMessages(this.partnerId)
     .subscribe(response => {
       if (response['MESSAGES'].length !== 0) {

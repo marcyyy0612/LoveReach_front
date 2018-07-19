@@ -9,7 +9,7 @@
         <mat-card>
           <mat-card-content>
             <button mat-button *ngIf="showFlg" (click)="onBackButton()">←</button>
-            <img mat-card-avatar src="./assets/images/sample1.jpg">
+            <img mat-card-avatar src="{{myAvatar}}">
             <button mat-button (click)="onProfileButton()">自己プロフィール</button>
           </mat-card-content>
         </mat-card>
@@ -23,7 +23,7 @@
       <div class="right_wrap">
         <div [ngSwitch]="mode">
           <div *ngSwitchCase="'stores'">
-            <app-stores></app-stores>
+            <app-stores (setMyAvatarEvent)="setMyAvatar($event)"></app-stores>
           </div>
           <div *ngSwitchCase="'profile'">
             <app-profile></app-profile>

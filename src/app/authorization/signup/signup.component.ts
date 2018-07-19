@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 
 export interface DialogData {
   userName: string;
-  sex: number;
+  sex: string;
   birthday: string;
   profile: string;
   mailAddress: string;
@@ -19,7 +19,8 @@ export interface DialogData {
 })
 export class SignupComponent {
 
-  selectedFiles: FileList;
+  private selectedFiles: FileList;
+
   constructor(public dialogRef: MatDialogRef<SignupComponent>,
     private signupService: SignupService,
     private router: Router,
@@ -32,23 +33,23 @@ export class SignupComponent {
 
   onOkClick(data): void {
     console.log(data);
-    // this.signupService.trySignup(data).subscribe(response => {
-    //   this.upload();
-    //   this.dialogRef.close();
-    //   this.router.navigate(['/app/recs']);
-    // },
-    //   error => {
-    //     console.log('error');
-    //   }
-    // );
+    const file = this.selectedFiles.item(0);
+    this.signupService.trySignup(data, file.name).subscribe(response => {
+      this.upload(file);
+      this.dialogRef.close();
+      this.router.navigate(['/app/recs']);
+    },
+      error => {
+        console.log('error');
+      }
+    );
   }
 
-  upload() {
-    const file = this.selectedFiles.item(0);
+  upload(file): void {
     this.signupService.uploadFile(file);
   }
 
-  selectedFile(event) {
+  selectedFile(event): void {
     this.selectedFiles = event.target.files;
   }
 

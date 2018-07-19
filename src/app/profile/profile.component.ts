@@ -17,12 +17,9 @@ export class ProfileComponent implements OnInit {
   }
 
   setMyInfo() {
-    const imgName = 'user1.jpg';
     this.profileService.getMyInfo().subscribe ( response => {
       this.myInfo = response['Me'][0];
-      // this.myProfileImg = this.profileService.getMyProfileImg(imgName);
-      this.myProfileImg = './assets/images/sample1.jpg';
+      this.myProfileImg = this.profileService.getMyProfileImg(this.myInfo['PROFILE_IMAGE']);
     });
   }
-
 }

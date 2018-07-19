@@ -5,31 +5,28 @@ import { Observable, of } from 'rxjs';
 import * as AWS from 'aws-sdk/global';
 import * as S3 from 'aws-sdk/clients/s3';
 
-interface MatchUserObj {
+interface UserObj {
   userId: number;
   userName: string;
   sex: number;
+  birthday: string;
   profile: string;
-  image: string;
-}
-
-interface MatchUsers {
-  matchUsers: Array<MatchUserObj>;
+  imgPath: string;
 }
 
 @Injectable({
   providedIn: 'root'
 })
-export class MessagesListService {
+export class RecsService {
 
   constructor(private http: HttpClient) { }
 
-  fetchMatchUsers(): Observable<MatchUsers> {
-    const url = '/api/users/like';
-    return this.http.get<MatchUsers>(url);
+  getMyInfo(): Observable<UserObj> {
+    const url = '/api/users/me';
+    return this.http.get<UserObj>(url);
   }
 
-  fetchMatchUsersImg(imgName: string): string {
+  getUsersImgPath(imgName: string): string {
     AWS.config.update({
       accessKeyId: environment.S3_ACCESS_KEY,
       secretAccessKey: environment.S3_SECRET_KEY,

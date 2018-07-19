@@ -1,6 +1,6 @@
 <mat-list>
   <mat-list-item *ngFor="let user of matchUsers" (click)="onSelectUser(user)">
-    <img mat-list-avatar src="./assets/images/sample1.jpg">
+    <img mat-list-avatar src="{{user['PROFILE_IMAGE']}}">
     <h3 mat-line>{{user['USER_NAME']}}</h3>
   </mat-list-item>
 </mat-list>

@@ -25,8 +25,8 @@ export class ProfileService {
     const url = '/api/users/me';
     return this.http.get<UserObj>(url);
   }
-  getMyProfileImg(imgName: string): string {
 
+  getMyProfileImg(imgName: string): string {
     AWS.config.update({
       accessKeyId: environment.S3_ACCESS_KEY,
       secretAccessKey: environment.S3_SECRET_KEY,

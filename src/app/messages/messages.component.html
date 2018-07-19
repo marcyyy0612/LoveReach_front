@@ -1,7 +1,7 @@
 <div class="container"> 
   <div class="left_wrap">
     <mat-card>
-      <img mat-card-avatar src="./assets/images/sample1.jpg">
+      <img mat-card-avatar src="{{partnerImg}}">
       {{partnerName}}さんにメッセージを送りましょう！
       <div class="back-button">
         <button mat-button (click)="onBackClick()">←</button>
@@ -32,9 +32,10 @@
   </div>
   <div class="right_wrap">
     <mat-card class="card">
-      <img mat-card-image src="./assets/images/sample1.jpg" onMouseDown="return false;" onSelectStart="return false" oncontextmenu="return false;">
+      <img mat-card-image src="{{partnerImg}}" onMouseDown="return false;" onSelectStart="return false" oncontextmenu="return false;">
       <mat-card-content>
         <div class="userName">{{selectedUser['USER_NAME']}}</div>
+        <div class="userName">{{selectedUser['PROFILE']}}</div>
       </mat-card-content>
     </mat-card>
   </div>

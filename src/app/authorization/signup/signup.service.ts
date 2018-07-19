@@ -13,19 +13,19 @@ export class SignupService {
 
   constructor(private http: HttpClient) { }
 
-  trySignup(data): Observable<Object> {
+  trySignup(data, fileName): Observable<Object> {
     const today = moment().format('YYYY-MM-DD');
     const url = '/api/signup';
     const body = {
       userId: 0, // userIdはAPI側でオートインクリメントしているのでなんでもおｋ
       userName: data.userName,
-      sex: 1,
+      sex: Number(data.sex),
       birthday: data.birthday,
       profile: data.profile,
       createdAt: today,
       mailAddress: data.mailAddress,
       password: data.password,
-      profileImage: 'user1.jpg'
+      profileImage: fileName
     };
     return this.http.post(url, body);
   }
@@ -39,7 +39,7 @@ export class SignupService {
     const s3 = new S3();
 
     const params = {
-      Bucket: 'final-training2018-marcy',
+      Bucket: environment.S3_BUCKET_NAME,
       Key: file.name,
       Body: file
     };

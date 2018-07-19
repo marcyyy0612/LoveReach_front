@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgSwitch } from '@angular/common';
-import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
+import { RecsService } from './recs.service';
 
 @Component({
   selector: 'app-recs',
@@ -13,15 +13,14 @@ export class RecsComponent implements OnInit {
   private mode: string;
   private showFlg: boolean;
   private selectedUser: Object;
-  constructor( private cookieService: CookieService,
+  private myInfo;
+  private myAvatar: string;
+  constructor( private recsService: RecsService,
     private router: Router) { }
 
   ngOnInit() {
-    // console.log(this.cookieService.getAll());
-    if (!this.cookieService.check('PLAY_SESSION_CSRF')) {
-      this.router.navigate(['/']);
-    }
     this.mode = 'stores';
+    this.setMyInfo();
   }
 
   onBackButton() {
@@ -39,5 +38,12 @@ export class RecsComponent implements OnInit {
   toStoreFromMessages() {
     this.mode = 'stores';
     this.showFlg = false;
+  }
+  setMyInfo() {
+    this.recsService.getMyInfo().subscribe(response => {
+      this.myInfo = response['Me'][0];
+      this.myAvatar = this.recsService.getUsersImgPath(this.myInfo['PROFILE_IMAGE']);
+      console.log(this.myAvatar);
+    });
   }
 }
