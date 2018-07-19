@@ -23,7 +23,7 @@
       <div class="right_wrap">
         <div [ngSwitch]="mode">
           <div *ngSwitchCase="'stores'">
-            <app-stores (setMyAvatarEvent)="setMyAvatar($event)"></app-stores>
+            <app-stores></app-stores>
           </div>
           <div *ngSwitchCase="'profile'">
             <app-profile></app-profile>
