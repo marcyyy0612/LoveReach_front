@@ -29,6 +29,7 @@ import { ProfileListComponent } from './profile-list/profile-list.component';
 import { AuthGuardService } from './auth-guard.service';
 import { SignupComponent } from './authorization/signup/signup.component';
 import { AuthorizationComponent } from './authorization/authorization.component';
+import { MatchingComponent } from './matching/matching.component';
 
 const appRoutes: Routes = [
   { path: '', component: TopComponent },
@@ -50,9 +51,11 @@ const appRoutes: Routes = [
     MessagesListComponent,
     ProfileListComponent,
     AuthorizationComponent,
+    MatchingComponent,
   ],
   entryComponents: [
-    AuthorizationComponent
+    AuthorizationComponent,
+    MatchingComponent
   ],
   imports: [
     HttpClientModule,

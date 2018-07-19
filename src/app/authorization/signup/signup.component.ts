@@ -38,6 +38,7 @@ export class SignupComponent {
       this.upload(file);
       this.dialogRef.close();
       this.router.navigate(['/app/recs']);
+      location.reload();
     },
       error => {
         console.log('error');

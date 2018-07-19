@@ -21,6 +21,7 @@ export class ProfileListComponent implements OnInit {
     this.profileListService.trySignOut().subscribe(response => {
       this.cookieService.deleteAll();
       this.router.navigate(['/']);
+      location.reload();
     });
   }
 

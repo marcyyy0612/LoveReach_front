@@ -1,0 +1,13 @@
+<div mat-dialog-content>
+  <h1>Congratulation!</h1>
+  <h3>{{data.partner}}さんとマッチしました．</h3>
+  <!-- <div> -->
+    <!-- <img class="img" src="{{data.myProfImg}}"> -->
+  <!-- </div> -->
+  <div>
+  <img class="img" src="{{data.partnerImg}}">
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button (click)="onNextButton()">続ける</button>
+  </div>
+</div>

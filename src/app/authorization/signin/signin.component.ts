@@ -25,11 +25,10 @@ export class SigninComponent {
     this.signinService.trySignin(data).subscribe(response => {
       this.dialogRef.close();
       this.router.navigate(['/app/recs']);
-    },
-      error => {
-        console.log('error');
-      }
-    );
+      location.reload();
+    }, error => {
+      console.log('error');
+    });
   }
 
   onSignupButton(): void {
