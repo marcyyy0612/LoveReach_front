@@ -1,4 +1,5 @@
 import { Component, Inject, Output, EventEmitter} from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { SignupService } from './signup.service';
 import { Router } from '@angular/router';

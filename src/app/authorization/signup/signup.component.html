@@ -1,38 +1,41 @@
-<div mat-dialog-content>
-  <div>
-    ユーザ名
-    <input matInput class="right" [(ngModel)]="data.userName">
-  </div>
-  <div class="dialog">
-    性別
-    <mat-button-toggle-group class="toggle-button" name="sex" aria-label="sex" [(ngModel)]="data.sex">
+<form (ngSubmit)="onOkClick(data)" #signupForm="ngForm">
+  <div mat-dialog-content>
+    <mat-form-field>
+      ユーザ名
+      <input matInput class="right" name="userName" [(ngModel)]="data.userName" required>
+    </mat-form-field>
+    <div>
+      性別
+      <mat-button-toggle-group  name="sex" aria-label="sex" [(ngModel)]="data.sex" required>
       <mat-button-toggle value=1>♂</mat-button-toggle>
       <mat-button-toggle value=2>♀</mat-button-toggle>
-    </mat-button-toggle-group>
+      </mat-button-toggle-group>
+    </div>
+      <mat-form-field>
+        誕生日
+        <input matInput class="right" type="date" name="birthday" [(ngModel)]="data.birthday" required>
+      </mat-form-field>
+      <div>
+        写真
+        <input class="right" type="file" accept="image/jpeg, image/png" name="file" (change)="selectedFile($event)" required>
+      </div>
+      <mat-form-field>
+        ひとこと
+        <input matInput class="right" name="profile" [(ngModel)]="data.profile">
+      </mat-form-field>
+
+      <mat-form-field>
+        メールアドレス
+        <input matInput class="right" name="profile" [(ngModel)]="data.mailAddress" required>
+      </mat-form-field>
+      <mat-form-field>
+        パスワード
+        <input matInput class="right" type="password" name="password" [(ngModel)]="data.password" required>
+        <mat-error *ngIf="password?.errors.required">必須項目</mat-error>
+      </mat-form-field>
   </div>
-  <div class="dialog">
-    誕生日
-    <input matInput class="right" type="date" [(ngModel)]="data.birthday">
+  <div mat-dialog-actions>
+    <button mat-button (click)="onSigninButton()">ログイン</button>
+    <button mat-button type="submit" (click)="onOkClick(data)" [disabled]="signupForm.invalid">Ok</button>
   </div>
-  <div class="dialog">
-    写真
-    <input class="right" type="file" accept="image/jpeg, image/png" (change)="selectedFile($event)">
-      profileImage: 
-  </div>
-  <div class="dialog">
-    ひとこと
-    <input matInput class="right" [(ngModel)]="data.profile">
-  </div>
-  <div class="dialog">
-    メールアドレス
-    <input matInput class="right" [(ngModel)]="data.mailAddress">
-  </div>
-  <div class="dialog">
-    パスワード
-    <input matInput class="right" type="password" [(ngModel)]="data.password">
-  </div>
-</div>
-<div mat-dialog-actions>
-  <button mat-button (click)="onSigninButton()">ログイン</button>
-  <button mat-button (click)="onOkClick(data)">Ok</button>
-</div>
+</form>

@@ -1,14 +1,18 @@
-<div mat-dialog-content>
-  <div>
-    メールアドレス
-    <input matInput class="right" [(ngModel)]="data.mailAddress">
+<form (ngSubmit)="onOkClick(data)" #signinForm="ngForm">
+  <div mat-dialog-content>
+    <mat-form-field>
+      メールアドレス
+      <input matInput class="right" name="mailAddress" [(ngModel)]="data.mailAddress" required>
+      <mat-error *ngIf="mailAddress?.errors.required">必須項目</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      パスワード
+      <input matInput class="right" name="password" [(ngModel)]="data.password" type="password" required>
+      <mat-error *ngIf="password?.errors.required">必須項目</mat-error>
+    </mat-form-field>
   </div>
-  <div>
-    パスワード
-    <input matInput class="right" [(ngModel)]="data.password" type="password">
+  <div mat-dialog-actions>
+    <button mat-button (click)="onSignupButton()">SignUp</button>
+    <button mat-button type="submit" (click)="onOkClick(data)" [disabled]="signinForm.invalid">Ok</button>
   </div>
-</div>
-<div mat-dialog-actions>
-  <button mat-button (click)="onSignupButton()">SignUp</button>
-  <button mat-button (click)="onOkClick(data)">Ok</button>
-</div>
+</form>
