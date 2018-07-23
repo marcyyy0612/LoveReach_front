@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { ProfileListService } from './profile-list.service';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
+import { ModifyProfComponent } from '../modify-prof/modify-prof.component';
 
 @Component({
   selector: 'app-profile-list',
@@ -10,9 +12,12 @@ import { CookieService } from 'ngx-cookie-service';
 })
 export class ProfileListComponent implements OnInit {
 
-  constructor(private profileListService: ProfileListService,
+
+  constructor(
+    private profileListService: ProfileListService,
     private router: Router,
-    private cookieService: CookieService) { }
+    private cookieService: CookieService,
+    public dialog: MatDialog) { }
 
   ngOnInit() {
   }
@@ -23,6 +28,15 @@ export class ProfileListComponent implements OnInit {
       this.router.navigate(['/']);
       location.reload();
     });
+  }
+
+  modifyProf() {
+    const dialogRef = this.dialog.open(ModifyProfComponent, {
+      'width': '350px',
+      'height': '500px',
+      'data': {}
+    });
+    dialogRef.afterClosed();
   }
 
 }

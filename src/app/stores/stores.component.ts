@@ -4,6 +4,8 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { Router } from '@angular/router';
 import 'hammerjs';
 import { MatchingComponent } from '../matching/matching.component';
+import { AppState } from '../app.state';
+import { MessagesService } from '../messages/messages.service';
 
 export interface DialogData {
   me: string;
@@ -30,10 +32,14 @@ export class StoresComponent implements OnInit {
   private nope: boolean;
   private myName: string;
   private myProfImg: string;
+  private isMoreUsers = true;
   @Output() setMyAvatarEvent = new EventEmitter();
 
-  constructor(private storesService: StoresService,
+  constructor(
+    private storesService: StoresService,
+    private messagesService: MessagesService,
     private router: Router,
+    private appState: AppState,
     public dialog: MatDialog) { }
 
   ngOnInit() {
@@ -41,15 +47,22 @@ export class StoresComponent implements OnInit {
   }
 
   setStoresUser() {
+    this.appState.loadStart();
     this.storesService.getStoresUser().subscribe(response => {
-      this.getCurrentLocation();
-      this.users = response;
-      this.userId = this.users['USERS'][0]['USER_ID'];
-      this.imgPath = this.getUsersImage(this.users['USERS'][0]['PROFILE_IMAGE']);
-      this.userName = this.users['USERS'][0]['USER_NAME'];
-      this.profile = this.users['USERS'][0]['PROFILE'];
+      // this.getCurrentLocation();
+      if (response['USERS'].length === 0) {
+        this.isMoreUsers = false;
+      } else {
+        this.users = response;
+        this.userId = this.users['USERS'][0]['USER_ID'];
+        this.imgPath = this.getUsersImage(this.users['USERS'][0]['PROFILE_IMAGE']);
+        this.userName = this.users['USERS'][0]['USER_NAME'];
+        this.profile = this.users['USERS'][0]['PROFILE'];
+        this.appState.loadEnd();
+      }
     }, error => {
       this.router.navigate(['/']);
+      this.appState.loadEnd();
     });
   }
 
@@ -75,6 +88,7 @@ export class StoresComponent implements OnInit {
   }
 
   selectMatching(status: number) {
+    this.appState.loadStart();
     this.showSelectMark(status);
     setTimeout(() => {
       this.like = false;
@@ -86,20 +100,32 @@ export class StoresComponent implements OnInit {
           const partnerName = this.userName;
           const partnerImg = this.imgPath;
           this.openMatchingDialog(partnerName, partnerImg);
+          this.storesService.getShops().subscribe(shopRes => {
+            const firstMessage = '今から' + shopRes['SHOPS'][0]['SHOP_URL'] + '\n行きましょー！';
+            this.messagesService.sendMessages(firstMessage, this.userId).subscribe(res => {
+            });
+          });
           this.selectedCount++;
           this.setNextUser();
         } else {
           this.selectedCount++;
           this.setNextUser();
         }
+        this.appState.loadEnd();
       });
   }
 
   setNextUser() {
-    this.userId = this.users['USERS'][this.selectedCount]['USER_ID'];
-    this.imgPath = this.getUsersImage(this.users['USERS'][this.selectedCount]['PROFILE_IMAGE']);
-    this.userName = this.users['USERS'][this.selectedCount]['USER_NAME'];
-    this.profile = this.users['USERS'][this.selectedCount]['PROFILE'];
+    this.appState.loadStart();
+    if (this.selectedCount < this.users['USERS'].length) {
+      this.userId = this.users['USERS'][this.selectedCount]['USER_ID'];
+      this.imgPath = this.getUsersImage(this.users['USERS'][this.selectedCount]['PROFILE_IMAGE']);
+      this.userName = this.users['USERS'][this.selectedCount]['USER_NAME'];
+      this.profile = this.users['USERS'][this.selectedCount]['PROFILE'];
+    } else {
+      this.isMoreUsers = false;
+    }
+    this.appState.loadEnd();
   }
 
   showSelectMark(status: number) {
@@ -120,8 +146,8 @@ export class StoresComponent implements OnInit {
   }
   openMatchingDialog(partnerName: string, partnerImg: string): void {
     const dialogRef = this.dialog.open(MatchingComponent, {
-      'width': '400px',
-      'height': '400px',
+      'width': '100%',
+      'height': '100%',
       'data': {'me': this.myName, 'partner': partnerName
         , 'myProfImg': this.myProfImg, 'partnerImg': partnerImg}
     });

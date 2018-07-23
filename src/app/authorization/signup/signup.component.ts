@@ -1,7 +1,9 @@
 import { Component, Inject, Output, EventEmitter} from '@angular/core';
+import { UUID } from 'angular2-uuid';
 import { FormControl, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { SignupService } from './signup.service';
+import { SigninService } from '../signin/signin.service';
 import { Router } from '@angular/router';
 
 export interface DialogData {
@@ -21,9 +23,15 @@ export interface DialogData {
 export class SignupComponent {
 
   private selectedFiles: FileList;
+  public passwordMaxLength = 15;
+  public passwordMinLength = 8;
+  public addressMaxLength = 30;
+  public addressMinLength = 10;
 
-  constructor(public dialogRef: MatDialogRef<SignupComponent>,
+  constructor(
+    public dialogRef: MatDialogRef<SignupComponent>,
     private signupService: SignupService,
+    private signinService: SigninService,
     private router: Router,
     @Inject(MAT_DIALOG_DATA) public data: DialogData) {}
   @Output() toSignin = new EventEmitter();
@@ -33,22 +41,22 @@ export class SignupComponent {
   }
 
   onOkClick(data): void {
-    console.log(data);
     const file = this.selectedFiles.item(0);
-    this.signupService.trySignup(data, file.name).subscribe(response => {
-      this.upload(file);
+    const fileName =  UUID.UUID() + file.name;
+    this.signupService.trySignup(data, fileName).subscribe(response => {
+      this.upload(file, fileName);
       this.dialogRef.close();
-      this.router.navigate(['/app/recs']);
-      location.reload();
+      this.signupService.trySignin(data).subscribe(res => {
+        this.router.navigate(['/app/recs']);
+      });
     },
       error => {
         console.log('error');
-      }
-    );
+      });
   }
 
-  upload(file): void {
-    this.signupService.uploadFile(file);
+  upload(file, fileName): void {
+    this.signupService.uploadFile(file, fileName);
   }
 
   selectedFile(event): void {

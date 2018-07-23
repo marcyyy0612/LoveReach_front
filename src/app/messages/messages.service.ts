@@ -34,7 +34,6 @@ export class MessagesService {
       sendDatetime: now
     };
 
-    console.log(message);
     return this.http.post(url, message);
   }
 

@@ -30,7 +30,7 @@ export class SignupService {
     return this.http.post(url, body);
   }
 
-  uploadFile(file) {
+  uploadFile(file, fileName) {
     AWS.config.update({
       accessKeyId: environment.S3_ACCESS_KEY,
       secretAccessKey: environment.S3_SECRET_KEY,
@@ -40,16 +40,25 @@ export class SignupService {
 
     const params = {
       Bucket: environment.S3_BUCKET_NAME,
-      Key: file.name,
+      Key: fileName,
       Body: file
     };
     s3.putObject(params, function (err, data) {
       if (err) {
-        console.log('There was an error uploading your file: ', err);
-        return false;
+        this.uploadFile(file, fileName);
       }
-      console.log('Successfully uploaded file.', data);
       return true;
     });
   }
+
+  trySignin(data): Observable<Object> {
+    const url = '/api/signin';
+    const body = {
+      mailAddress: data.mailAddress,
+      password: data.password
+    };
+
+    return this.http.post(url, body);
+  }
+
 }

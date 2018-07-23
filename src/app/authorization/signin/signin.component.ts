@@ -16,6 +16,11 @@ export interface DialogData {
   styleUrls: ['./signin.component.css']
 })
 export class SigninComponent {
+  public passwordMaxLength = 15;
+  public passwordMinLength = 8;
+  public addressMaxLength = 30;
+  public addressMinLength = 10;
+
   constructor(public dialogRef: MatDialogRef<SigninComponent>,
     private signinService: SigninService,
     private router: Router,
@@ -26,7 +31,6 @@ export class SigninComponent {
     this.signinService.trySignin(data).subscribe(response => {
       this.dialogRef.close();
       this.router.navigate(['/app/recs']);
-      location.reload();
     }, error => {
       console.log('error');
     });

@@ -1,13 +1,17 @@
 .me {
+  background-color: #BFFF00;
   width: 40%;
   margin-left: auto;
   text-align: left;
+  max-width:100%;
+  border-radius:20px;
 }
 
 .partner {
   width: 40%;
   margin-right: auto;
   text-align: left;
+  border-radius:20px;
 }
 
 .dateTime {
@@ -18,18 +22,21 @@
   float: right;
 }
 
+.message-area {
+  /* height: scroll; */
+  height: 550px;
+  overflow: scroll;
+}
 .bottom-area {
   width: 40%;
   margin: 0 auto;
   position: absolute;
   bottom: 0;
 }
-
 .input-area {
   font-size:100%;
   width: 80%;
 }
-
 .send-button {
   background-color: #EB5D6B;
   font-weight: bold;
@@ -56,4 +63,9 @@
   width: 39%;
   height: 100%;
   float: right;
+}
+
+.remove-button {
+  width: 1%;
+  height: 1%;
 }

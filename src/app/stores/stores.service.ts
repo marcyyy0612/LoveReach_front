@@ -19,6 +19,16 @@ interface Users {
   users: Array<UserObj>;
 }
 
+interface ShopObj {
+  shopId: number;
+  shopName: string;
+  shopUrl: string;
+}
+
+interface Shops {
+  shops: Array<ShopObj>;
+}
+
 interface MatchingResult {
   result: string;
   isMatching: boolean;
@@ -67,5 +77,10 @@ export class StoresService {
     };
 
     return s3.getSignedUrl('getObject', params);
+  }
+
+  getShops(): Observable<Shops> {
+    const url = '/api/shops/list';
+    return this.http.get<Shops>(url);
   }
 }

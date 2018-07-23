@@ -43,7 +43,6 @@ export class RecsComponent implements OnInit {
     this.recsService.getMyInfo().subscribe(response => {
       this.myInfo = response['Me'][0];
       this.myAvatar = this.recsService.getUsersImgPath(this.myInfo['PROFILE_IMAGE']);
-      console.log(this.myAvatar);
     });
   }
 }

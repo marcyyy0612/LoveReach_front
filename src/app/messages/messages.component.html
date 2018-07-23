@@ -7,24 +7,26 @@
         <button mat-button (click)="onBackClick()">←</button>
       </div>
     </mat-card>
-    <div *ngFor="let message of messages"> 
-      <div *ngIf="message['USER_ID'] === myInfo['USER_ID']">
-        <mat-card class="me">
-          {{message['MESSAGE']}}
-          <div class="dateTime">
-            {{message['SEND_DATETIME']}}
-          </div>
-        </mat-card>
+    <mat-card class="message-area">
+      <div *ngFor="let message of messages"> 
+        <div *ngIf="message['USER_ID'] === myInfo['USER_ID']">
+          <mat-card class="me">
+            {{message['MESSAGE']}}
+            <div class="dateTime">
+              {{message['SEND_DATETIME']}}
+            </div>
+          </mat-card>
+        </div>
+        <div *ngIf="message['USER_ID'] !== myInfo['USER_ID']">
+          <mat-card class="partner">
+            {{message['MESSAGE']}}
+            <div class="dateTime">
+              {{message['SEND_DATETIME']}}
+            </div>
+          </mat-card>
+        </div>
       </div>
-      <div *ngIf="message['USER_ID'] !== myInfo['USER_ID']">
-        <mat-card class="partner">
-          {{message['MESSAGE']}}
-          <div class="dateTime">
-            {{message['SEND_DATETIME']}}
-          </div>
-        </mat-card>
-      </div>
-    </div>
+    </mat-card>
     <mat-card class="bottom-area">
       <input matInput class="input-area" name="message" placeholder="メッセージを入力..." [(ngModel)]="sendMessage">
       <button mat-button class="send-button" (click)="onSendClick()">送信</button>
@@ -34,8 +36,8 @@
     <mat-card class="card">
       <img mat-card-image src="{{partnerImg}}" onMouseDown="return false;" onSelectStart="return false" oncontextmenu="return false;">
       <mat-card-content>
-        <div class="userName">{{selectedUser['USER_NAME']}}</div>
-        <div class="userName">{{selectedUser['PROFILE']}}</div>
+        <h2>{{selectedUser['USER_NAME']}}</h2>
+        <h4>{{selectedUser['PROFILE']}}</h4>
       </mat-card-content>
     </mat-card>
   </div>

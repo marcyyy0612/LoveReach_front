@@ -16,3 +16,17 @@
   float: right;
 }
 
+.setting-area {
+  background-color: #EB5D6B;
+}
+
+.setting-button {
+  font-weight: bold;
+  font-size: 20px;
+  color: #fff;
+}
+
+.back-icon {
+  width: 40px;
+  height: 40px;
+}

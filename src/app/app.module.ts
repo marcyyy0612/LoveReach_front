@@ -13,7 +13,8 @@ import {
   MatButtonModule,
   MatButtonToggleModule,
   MatDialogModule,
-  MatListModule
+  MatListModule,
+  MatProgressSpinnerModule
 } from '@angular/material';
 
 import { AppComponent } from './app.component';
@@ -30,6 +31,8 @@ import { AuthGuardService } from './auth-guard.service';
 import { SignupComponent } from './authorization/signup/signup.component';
 import { AuthorizationComponent } from './authorization/authorization.component';
 import { MatchingComponent } from './matching/matching.component';
+import { AppState } from './app.state';
+import { ModifyProfComponent } from './modify-prof/modify-prof.component';
 
 const appRoutes: Routes = [
   { path: '', component: TopComponent },
@@ -52,17 +55,19 @@ const appRoutes: Routes = [
     ProfileListComponent,
     AuthorizationComponent,
     MatchingComponent,
+    ModifyProfComponent,
   ],
   entryComponents: [
     AuthorizationComponent,
-    MatchingComponent
+    MatchingComponent,
+    ModifyProfComponent
   ],
   imports: [
     HttpClientModule,
     HttpClientXsrfModule.withOptions({
       cookieName: 'PLAY_SESSION_CSRF',
       headerName: 'Csrf-Token'
-   }),
+    }),
     RouterModule.forRoot(appRoutes),
     BrowserModule,
     BrowserAnimationsModule,
@@ -74,9 +79,13 @@ const appRoutes: Routes = [
     MatCardModule,
     MatInputModule,
     MatDialogModule,
-    MatListModule
+    MatListModule,
+    MatProgressSpinnerModule
   ],
-  providers: [CookieService],
+  providers: [
+    CookieService,
+    AppState
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
