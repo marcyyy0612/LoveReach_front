@@ -28,10 +28,11 @@
     </mat-form-field>
     <mat-form-field>
       メールアドレス
-      <input matInput class="right" name="profile" [(ngModel)]="data.mailAddress" required
+      <input matInput class="right" name="mailAddress" [(ngModel)]="data.mailAddress" required
                                     minlength="{{addressMinLength}}" maxlength="{{addressMaxLength}}">
       <mat-error *ngIf="true">*必須(10〜30文字)</mat-error>
     </mat-form-field>
+    <div *ngIf="isFaildSignup" class="faild-message">すでに使用されているメールアドレスです</div>
     <mat-form-field>
       パスワード
       <input matInput class="right" type="password" name="password" [(ngModel)]="data.password" required

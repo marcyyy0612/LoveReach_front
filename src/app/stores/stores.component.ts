@@ -88,7 +88,7 @@ export class StoresComponent implements OnInit {
   }
 
   selectMatching(status: number) {
-    this.appState.loadStart();
+    // this.appState.loadStart();
     this.showSelectMark(status);
     setTimeout(() => {
       this.like = false;
@@ -146,8 +146,8 @@ export class StoresComponent implements OnInit {
   }
   openMatchingDialog(partnerName: string, partnerImg: string): void {
     const dialogRef = this.dialog.open(MatchingComponent, {
-      'width': '100%',
-      'height': '100%',
+      'width': '80%',
+      // 'height': '80%',
       'data': {'me': this.myName, 'partner': partnerName
         , 'myProfImg': this.myProfImg, 'partnerImg': partnerImg}
     });

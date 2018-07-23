@@ -1,5 +1,6 @@
-import { Component, Output, EventEmitter, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, ViewChild, Output, EventEmitter, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { MessagesService } from './messages.service';
+import { NgxAutoScroll } from 'ngx-auto-scroll';
 
 @Component({
   selector: 'app-messages',
@@ -19,6 +20,12 @@ export class MessagesComponent implements OnChanges {
   private sendMessage: string;
   @Input() selectedUser: Object;
   @Output() toStoreFromMessages = new EventEmitter();
+
+  @ViewChild(NgxAutoScroll) ngxAutoScroll: NgxAutoScroll;
+
+  public forceScrollDown(): void {
+    this.ngxAutoScroll.forceScrollDown();
+  }
 
   ngOnChanges(change: SimpleChanges) {
     this.showMessages();

@@ -5,3 +5,8 @@
 .left {
   float: left;
 }
+
+.faild-signin {
+  color: #FC0101;
+  font: x-small;
+}

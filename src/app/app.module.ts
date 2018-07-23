@@ -5,6 +5,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HttpClientXsrfModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
+import { NgxAutoScrollModule } from 'ngx-auto-scroll';
+
 import {
   MatCheckboxModule,
   MatRadioModule,
@@ -80,7 +82,8 @@ const appRoutes: Routes = [
     MatInputModule,
     MatDialogModule,
     MatListModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    NgxAutoScrollModule
   ],
   providers: [
     CookieService,

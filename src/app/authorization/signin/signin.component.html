@@ -9,8 +9,8 @@
     <mat-form-field>
       パスワード
       <input matInput class="right" name="password" type="password" [(ngModel)]="data.password" required
-  no more users
-                                    minlength="{{passwordMinLength}}" maxlength="{{passwordMaxLength}}">
+                                                    no more users
+                                                    minlength="{{passwordMinLength}}" maxlength="{{passwordMaxLength}}">
       <mat-error *ngIf="true">*必須(8〜15文字)</mat-error>
     </mat-form-field>
   </div>
@@ -19,3 +19,4 @@
     <button mat-button type="submit" (click)="onOkClick(data)" [disabled]="signinForm.invalid">Ok</button>
   </div>
 </form>
+<div *ngIf="isFaildSignin" class="faild-signin">ログインに失敗しました</div>

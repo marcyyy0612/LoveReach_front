@@ -20,6 +20,7 @@ export class SigninComponent {
   public passwordMinLength = 8;
   public addressMaxLength = 30;
   public addressMinLength = 10;
+  private isFaildSignin = false;
 
   constructor(public dialogRef: MatDialogRef<SigninComponent>,
     private signinService: SigninService,
@@ -32,7 +33,7 @@ export class SigninComponent {
       this.dialogRef.close();
       this.router.navigate(['/app/recs']);
     }, error => {
-      console.log('error');
+      this.isFaildSignin = true;
     });
   }
 

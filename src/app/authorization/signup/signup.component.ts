@@ -27,6 +27,7 @@ export class SignupComponent {
   public passwordMinLength = 8;
   public addressMaxLength = 30;
   public addressMinLength = 10;
+  private isFaildSignup = false;
 
   constructor(
     public dialogRef: MatDialogRef<SignupComponent>,
@@ -51,6 +52,7 @@ export class SignupComponent {
       });
     },
       error => {
+        this.isFaildSignup = true;
         console.log('error');
       });
   }
