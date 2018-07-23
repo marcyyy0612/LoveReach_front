@@ -20,6 +20,11 @@
     <button mat-button (click)="selectMatching(1)"><img src="assets/images/like_button.svg"></button>
   </div>
 </div>
-<div *ngIf="isMoreUsers == false">
-  選択できる人がいません
+<div class="store" *ngIf="isMoreUsers == false">
+  <h1 class="nomore-user">
+    現在選択できる人がいません...
+  </h1>
+  <div class="loading">
+    <mat-spinner></mat-spinner>
+  </div>
 </div>

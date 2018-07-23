@@ -4,7 +4,9 @@
       <img mat-card-avatar src="{{partnerImg}}">
       {{partnerName}}さんにメッセージを送りましょう！
       <div class="back-button">
-        <button mat-button (click)="onBackClick()">←</button>
+        <button mat-button (click)="onBackClick()">
+          <img class="cancel-img" src="../assets/images/cancel.svg">
+        </button>
       </div>
     </mat-card>
     <mat-card class="message-area">
@@ -30,8 +32,10 @@
       </div>
     </mat-card>
     <mat-card class="bottom-area">
-      <input matInput class="input-area" name="message" placeholder="メッセージを入力..." [(ngModel)]="sendMessage">
-      <button mat-button class="send-button" (click)="onSendClick()">送信</button>
+      <form>
+        <input matInput class="input-area" name="message" placeholder="メッセージを入力..." [(ngModel)]="sendMessage" required>
+        <button mat-button class="send-button" (click)="onSendClick()">送信</button>
+      </form>
     </mat-card>
   </div>
   <div class="right_wrap">

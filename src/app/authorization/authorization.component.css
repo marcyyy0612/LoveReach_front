@@ -1,0 +1,15 @@
+.title {
+  font: bold;
+}
+
+.cancel-img {
+  width: 20px;
+}
+
+.cancel-button {
+  float: right;
+}
+
+.dialog {
+  border-radius: 10px;
+}
