@@ -53,7 +53,6 @@ export class SignupComponent {
     },
       error => {
         this.isFaildSignup = true;
-        console.log('error');
       });
   }
 

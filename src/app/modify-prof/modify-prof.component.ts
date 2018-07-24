@@ -6,11 +6,9 @@ import { ModifyProfService } from './modify-prof.service';
 
 export interface DialogData {
   userName: string;
-  sex: string;
-  birthday: string;
+  sex: number;
   profile: string;
-  mailAddress: string;
-  password: string;
+  profileImage: string;
 }
 @Component({
   selector: 'app-modify-prof',
@@ -18,14 +16,10 @@ export interface DialogData {
   styleUrls: ['./modify-prof.component.css']
 })
 export class ModifyProfComponent implements OnInit {
-  userName = 'hoge';
-
-  public passwordMaxLength = 15;
-  public passwordMinLength = 8;
-  public addressMaxLength = 30;
-  public addressMinLength = 10;
+  private isFaildModify = false;
   constructor(
     public dialogRef: MatDialogRef<ModifyProfComponent>,
+    private modifyProfService: ModifyProfService,
     @Inject(MAT_DIALOG_DATA) public data: DialogData
   ) { }
 
@@ -33,7 +27,11 @@ export class ModifyProfComponent implements OnInit {
   }
 
   onOkClick() {
-
+    this.modifyProfService.modifyProf(this.data).subscribe(response => {
+      this.dialogRef.close();
+    }, error => {
+        this.isFaildModify = true;
+    });
   }
 
 }

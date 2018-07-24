@@ -11,7 +11,9 @@ export class MessagesListComponent implements OnInit {
 
   matchUsers: Array<Object> = new Array();
 
-  constructor(private messagesListService: MessagesListService) { }
+  constructor(
+    private messagesListService: MessagesListService,
+  ) { }
   @Output() messageToSelectedUser = new EventEmitter();
 
   ngOnInit() {

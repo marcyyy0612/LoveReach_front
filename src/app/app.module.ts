@@ -35,6 +35,7 @@ import { AuthorizationComponent } from './authorization/authorization.component'
 import { MatchingComponent } from './matching/matching.component';
 import { AppState } from './app.state';
 import { ModifyProfComponent } from './modify-prof/modify-prof.component';
+import { ModifyProfImgComponent } from './modify-prof-img/modify-prof-img.component';
 
 const appRoutes: Routes = [
   { path: '', component: TopComponent },
@@ -58,11 +59,13 @@ const appRoutes: Routes = [
     AuthorizationComponent,
     MatchingComponent,
     ModifyProfComponent,
+    ModifyProfImgComponent,
   ],
   entryComponents: [
     AuthorizationComponent,
     MatchingComponent,
-    ModifyProfComponent
+    ModifyProfComponent,
+    ModifyProfImgComponent
   ],
   imports: [
     HttpClientModule,

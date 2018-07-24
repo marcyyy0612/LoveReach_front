@@ -13,35 +13,11 @@
         <mat-button-toggle value=3>♂ + ♀</mat-button-toggle>
       </mat-button-toggle-group>
     </div>
-    <!--     <mat-form-field>
-      誕生日
-      <input matInput class="right" type="date" name="birthday" [(ngModel)]="data.birthday" required>
-      <mat-error *ngIf="true">*必須</mat-error>
-      </mat-form-field>
-
-    <div>
-      写真
-      <input class="right" type="file" accept="image/jpeg, image/png" name="file" (change)="selectedFile($event)" required>
-    </div>
-    -->
     <mat-form-field>
       ひとこと
       <input matInput class="right" name="profile" [(ngModel)]="data.profile">
     </mat-form-field>
-    <!--
-    <mat-form-field>
-      メールアドレス
-      <input matInput class="right" name="profile" [(ngModel)]="data.mailAddress" required
-                                    minlength="{{addressMinLength}}" maxlength="{{addressMaxLength}}">
-      <mat-error *ngIf="true">*必須(10〜30文字)</mat-error>
-    </mat-form-field>
-    <mat-form-field>
-      パスワード
-      <input matInput class="right" type="password" name="password" [(ngModel)]="data.password" required
-                                                    minlength="{{passwordMinLength}}" maxlength="{{passwordMaxLength}}">
-      <mat-error *ngIf="true">*必須(8〜15文字)</mat-error>
-    </mat-form-field>
-    -->
+    <div *ngIf="isFaildSignup" class="faild-message">修正に失敗しました</div>
   </div>
   <div mat-dialog-actions>
     <button mat-button type="submit" (click)="onOkClick(data)" [disabled]="modifyForm.invalid">変更</button>

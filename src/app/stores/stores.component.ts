@@ -101,8 +101,16 @@ export class StoresComponent implements OnInit {
           const partnerImg = this.imgPath;
           this.openMatchingDialog(partnerName, partnerImg);
           this.storesService.getShops().subscribe(shopRes => {
-            const firstMessage = '今から' + shopRes['SHOPS'][0]['SHOP_URL'] + '\n行きましょー！';
-            this.messagesService.sendMessages(firstMessage, this.userId).subscribe(res => {
+            const maxNum = shopRes['SHOPS'].length;
+            const randNum = Math.floor(Math.random() * maxNum);
+            const firstMessage = '今からここに行きましょー！';
+            const secondMessage = shopRes['SHOPS'][randNum]['SHOP_NAME'];
+            const thirdMessage = shopRes['SHOPS'][randNum]['SHOP_URL'];
+            this.messagesService.sendMessages(firstMessage, this.userId).subscribe(first => {
+              this.messagesService.sendMessages(secondMessage, this.userId).subscribe(second => {
+                this.messagesService.sendMessages(thirdMessage, this.userId).subscribe(third => {
+                });
+              });
             });
           });
           this.selectedCount++;

@@ -70,6 +70,8 @@
 }
 
 .card {
+  background-color: transparent;
+  box-shadow: none !important;
   position: absolute;
   top: 50%;
   left: 50%;

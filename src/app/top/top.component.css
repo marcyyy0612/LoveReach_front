@@ -18,7 +18,7 @@
 .like-button {
   position: absolute;
   top: 85%;
-  left: 25%;
+  left: 23%;
   transform: translateY(-85%) translateX(-25%);
   -webkit- transform: translateY(-85%) translateX(-25%);
   width:5%;
@@ -27,18 +27,28 @@
 .nope-button {
   position: absolute;
   top: 85%;
-  left: 15%;
+  left: 13%;
   transform: translateY(-85%) translateX(-15%);
   -webkit- transform: translateY(-85%) translateX(-15%);
   width:5%;
 }
 
+.left-wrap {
+  width: 50%;
+  height: 100vh;
+  float: left;
+}
+
 .right-wrap {
+  width: 50%;
+  height: 100vh;
+  float: right;
+}
+
+.text {
   position: absolute;
-  top: 50%;
-  left: 75%;
-  transform: translateY(-50%) translateX(-75%);
-  -webkit- transform: translateY(-50%) translateX(-75%);
-  width: 40%;
-  height: 60vh;
+  top: 30%;
+  left: 70%;
+  transform: translateY(-50%) translateX(-50%);
+  -webkit- transform: translateY(-50%) translateX(-50%);
 }

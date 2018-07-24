@@ -4,6 +4,7 @@ import { ProfileListService } from './profile-list.service';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { ModifyProfComponent } from '../modify-prof/modify-prof.component';
+import { ModifyProfImgComponent } from '../modify-prof-img/modify-prof-img.component';
 
 @Component({
   selector: 'app-profile-list',
@@ -39,4 +40,12 @@ export class ProfileListComponent implements OnInit {
     dialogRef.afterClosed();
   }
 
+  modifyProfImg() {
+    const dialogRef = this.dialog.open(ModifyProfImgComponent, {
+      'width': '350px',
+      'height': '500px',
+      'data': {}
+    });
+    dialogRef.afterClosed();
+  }
 }
