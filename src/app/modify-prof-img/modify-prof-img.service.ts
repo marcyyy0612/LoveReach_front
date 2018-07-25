@@ -35,11 +35,6 @@ export class ModifyProfImgService {
       Key: fileName,
       Body: file
     };
-    s3.putObject(params, function (err, data) {
-      if (err) {
-        this.uploadFile(file, fileName);
-      }
-      return true;
-    });
+    return s3.putObject(params).promise();
   }
 }

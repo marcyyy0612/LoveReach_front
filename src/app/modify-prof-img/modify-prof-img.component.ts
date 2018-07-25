@@ -1,4 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
+import { AppState } from '../app.state';
 import { UUID } from 'angular2-uuid';
 import { FormControl, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
@@ -16,9 +17,12 @@ export interface DialogData {
 export class ModifyProfImgComponent implements OnInit {
   private selectedFiles: FileList;
   private isFaildModify = false;
+  private isSelectedFile = false;
+
   constructor(
     public dialogRef: MatDialogRef<ModifyProfImgComponent>,
     private modifyProfImgService: ModifyProfImgService,
+    private appState: AppState,
     @Inject(MAT_DIALOG_DATA) public data: DialogData
   ) { }
 
@@ -29,18 +33,24 @@ export class ModifyProfImgComponent implements OnInit {
     const file = this.selectedFiles.item(0);
     const fileName =  UUID.UUID() + file.name;
     this.modifyProfImgService.modifyProfImg(fileName).subscribe(response => {
-    this.upload(file, fileName);
-      this.dialogRef.close();
+      this.appState.loadStart();
+      this.modifyProfImgService.uploadFile(file, fileName).then(function(res) {
+        location.reload();
+        this.dialogRef.close();
+        this.appState.loadEnd();
+      }).catch(function(err) {
+        this.isFaildModify = true;
+        this.appState.loadEnd();
+      });
     }, error => {
       this.isFaildModify = true;
+      this.appState.loadEnd();
     });
   }
 
   selectedFile(event): void {
     this.selectedFiles = event.target.files;
-  }
-  upload(file, fileName): void {
-    this.modifyProfImgService.uploadFile(file, fileName);
+    this.isSelectedFile = true;
   }
 
 }

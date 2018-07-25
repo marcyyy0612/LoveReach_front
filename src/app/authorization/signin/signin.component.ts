@@ -18,7 +18,7 @@ export interface DialogData {
 export class SigninComponent {
   public passwordMaxLength = 15;
   public passwordMinLength = 8;
-  public addressMaxLength = 30;
+  public addressMaxLength = 50;
   public addressMinLength = 10;
   private isFaildSignin = false;
 

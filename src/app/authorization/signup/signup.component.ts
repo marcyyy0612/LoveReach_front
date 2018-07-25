@@ -25,9 +25,11 @@ export class SignupComponent {
   private selectedFiles: FileList;
   public passwordMaxLength = 15;
   public passwordMinLength = 8;
-  public addressMaxLength = 30;
+  public addressMaxLength = 50;
   public addressMinLength = 10;
   private isFaildSignup = false;
+  private isSelectedFile = false;
+  private isOnClick = false;
 
   constructor(
     public dialogRef: MatDialogRef<SignupComponent>,
@@ -42,26 +44,26 @@ export class SignupComponent {
   }
 
   onOkClick(data): void {
-    const file = this.selectedFiles.item(0);
-    const fileName =  UUID.UUID() + file.name;
-    this.signupService.trySignup(data, fileName).subscribe(response => {
-      this.upload(file, fileName);
-      this.dialogRef.close();
-      this.signupService.trySignin(data).subscribe(res => {
-        this.router.navigate(['/app/recs']);
-      });
-    },
-      error => {
-        this.isFaildSignup = true;
-      });
-  }
-
-  upload(file, fileName): void {
-    this.signupService.uploadFile(file, fileName);
+    if (this.isOnClick === false) {
+      this.isOnClick = true;
+      const file = this.selectedFiles.item(0);
+      const fileName =  UUID.UUID() + file.name;
+      this.signupService.trySignup(data, fileName).subscribe(response => {
+        this.signupService.uploadFile(file, fileName);
+        this.dialogRef.close();
+        this.signupService.trySignin(data).subscribe(res => {
+          this.router.navigate(['/app/recs']);
+        });
+      },
+        error => {
+          this.isFaildSignup = true;
+        });
+    }
   }
 
   selectedFile(event): void {
     this.selectedFiles = event.target.files;
+    this.isSelectedFile = true;
   }
 
   onSigninButton(): void {

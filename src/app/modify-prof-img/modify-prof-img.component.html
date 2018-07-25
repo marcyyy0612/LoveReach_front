@@ -1,12 +1,20 @@
-<form (ngSubmit)="onOkClick(data)" #modifyForm="ngForm">
+<form (ngSubmit)="onOkClick(data)">
+  <h2>プロフィール画像の修正</h2>
   <div mat-dialog-content>
     <div>
       写真
-      <input class="right" type="file" accept="image/jpeg, image/png" name="file" (change)="selectedFile($event)" required>
+      <span class="faild-message"*ngIf="isSelectedFile==false">*必須</span>
+      <div>
+        <input class="right" type="file" accept="image/jpeg, image/png" name="file" (change)="selectedFile($event)" required>
+      </div>
     </div>
     <div *ngIf="isFaildModify" class="faild-message">修正に失敗しました</div>
   </div>
   <div mat-dialog-actions>
-    <button mat-button type="submit" (click)="onOkClick(data)" [disabled]="modifyForm.invalid">変更</button>
+    <button mat-button type="submit" (click)="onOkClick(data)"
+                       [disabled]="isSelectedFile==false">変更</button>
   </div>
 </form>
+<div class="loading" *ngIf="appState.loading">
+  <mat-spinner></mat-spinner>
+</div>

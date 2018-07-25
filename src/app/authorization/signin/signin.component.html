@@ -2,16 +2,18 @@
   <div mat-dialog-content>
     <mat-form-field>
       メールアドレス
-      <input matInput class="right" name="mailAddress" [(ngModel)]="data.mailAddress" required
-                                    minlength="{{addressMinLength}}" maxlength="{{addressMaxLength}}">
-      <mat-error *ngIf="true">*必須(10〜30文字)</mat-error>
+      <span class="faild-message"*ngIf="data.mailAddress==null">*必須</span>
+      <input matInput name="mailAddress" type="email"
+                      pattern="^[0-9A-Za-z@._]+$" [(ngModel)]="data.mailAddress" required
+                      minlength="{{addressMinLength}}" maxlength="{{addressMaxLength}}">
+      <mat-error *ngIf="true">10〜50文字で入力してください</mat-error>
     </mat-form-field>
     <mat-form-field>
       パスワード
-      <input matInput class="right" name="password" type="password" [(ngModel)]="data.password" required
-                                                    no more users
-                                                    minlength="{{passwordMinLength}}" maxlength="{{passwordMaxLength}}">
-      <mat-error *ngIf="true">*必須(8〜15文字)</mat-error>
+      <span class="faild-message"*ngIf="data.password==null">*必須</span>
+      <input matInput name="password" type="password" [(ngModel)]="data.password" required
+                                      minlength="{{passwordMinLength}}" maxlength="{{passwordMaxLength}}">
+      <mat-error *ngIf="true">8〜15文字で入力してください</mat-error>
     </mat-form-field>
   </div>
   <div mat-dialog-actions>

@@ -29,6 +29,7 @@ export class ModifyProfComponent implements OnInit {
   onOkClick() {
     this.modifyProfService.modifyProf(this.data).subscribe(response => {
       this.dialogRef.close();
+      location.reload();
     }, error => {
         this.isFaildModify = true;
     });

@@ -33,7 +33,7 @@ export class MenuBarComponent {
       'data' : {'title': 'Authorization'},
       'height' : '500px',
       'width' : '350px',
-      'disableClose' : false
+      'disableClose' : false,
     });
     dialog.afterClosed();
   }

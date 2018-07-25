@@ -13,7 +13,6 @@ import { ModifyProfImgComponent } from '../modify-prof-img/modify-prof-img.compo
 })
 export class ProfileListComponent implements OnInit {
 
-
   constructor(
     private profileListService: ProfileListService,
     private router: Router,

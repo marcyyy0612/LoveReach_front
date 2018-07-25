@@ -88,7 +88,7 @@ export class StoresComponent implements OnInit {
   }
 
   selectMatching(status: number) {
-    // this.appState.loadStart();
+    this.appState.loadStart();
     this.showSelectMark(status);
     setTimeout(() => {
       this.like = false;
@@ -109,12 +109,12 @@ export class StoresComponent implements OnInit {
             this.messagesService.sendMessages(firstMessage, this.userId).subscribe(first => {
               this.messagesService.sendMessages(secondMessage, this.userId).subscribe(second => {
                 this.messagesService.sendMessages(thirdMessage, this.userId).subscribe(third => {
+                  this.selectedCount++;
+                  this.setNextUser();
                 });
               });
             });
           });
-          this.selectedCount++;
-          this.setNextUser();
         } else {
           this.selectedCount++;
           this.setNextUser();
