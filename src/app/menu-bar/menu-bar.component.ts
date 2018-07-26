@@ -13,6 +13,8 @@ import { MenuBarService } from './menu-bar.service';
 })
 export class MenuBarComponent {
 
+  private isOnClickButton = false;
+
   constructor(
     public matDialog: MatDialog,
     private router: Router,
@@ -20,15 +22,19 @@ export class MenuBarComponent {
   ) {}
 
   onAuthorizeButton(): void {
-    this.menubarService.isAlreadySignin().subscribe(response => {
-      this.router.navigate(['/app/recs']);
-    },
-    error => {
-      this.openAuthorizeWindow();
-    });
+    if (this.isOnClickButton === false) {
+      this.isOnClickButton = true;
+      this.menubarService.isAlreadySignin().subscribe(response => {
+        this.router.navigate(['/app/recs']);
+      },
+        error => {
+          this.openAuthorizeWindow();
+        });
+    }
   }
 
   openAuthorizeWindow(): void {
+    this.isOnClickButton = false;
     const dialog = this.matDialog.open(AuthorizationComponent, {
       'data' : {'title': 'Authorization'},
       'height' : '500px',

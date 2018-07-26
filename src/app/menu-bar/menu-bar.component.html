@@ -1,6 +1,6 @@
 <mat-card>
   <mat-card-content>
     <img class="logo" src="../assets/images/lovereach.png">
-    <button class="authorizeButton" mat-button (click)="onAuthorizeButton()">ログイン</button>
+    <button class="authorizeButton" mat-button (click)="onAuthorizeButton()" [disabled]="isOnClickButton">ログイン</button>
   </mat-card-content>
 </mat-card>
