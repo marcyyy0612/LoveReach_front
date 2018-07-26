@@ -1,4 +1,5 @@
 import { Component, Inject, Output, EventEmitter} from '@angular/core';
+import { AppState } from '../../app.state';
 import { UUID } from 'angular2-uuid';
 import { FormControl, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
@@ -30,6 +31,7 @@ export class SignupComponent {
   private isFaildSignup = false;
   private isSelectedFile = false;
   private isOnClick = false;
+  private appState = new AppState();
 
   constructor(
     public dialogRef: MatDialogRef<SignupComponent>,
@@ -48,14 +50,18 @@ export class SignupComponent {
       this.isOnClick = true;
       const file = this.selectedFiles.item(0);
       const fileName =  UUID.UUID() + file.name;
+      this.appState.loadStart();
       this.signupService.trySignup(data, fileName).subscribe(response => {
-        this.signupService.uploadFile(file, fileName);
-        this.dialogRef.close();
-        this.signupService.trySignin(data).subscribe(res => {
-          this.router.navigate(['/app/recs']);
+        this.signupService.uploadFile(file, fileName).subscribe(s3res => {
+          this.dialogRef.close();
+          this.signupService.trySignin(data).subscribe(res => {
+            this.appState.loadEnd();
+            this.router.navigate(['/app/recs']);
+          });
         });
       },
         error => {
+          this.appState.loadEnd();
           this.isFaildSignup = true;
         });
     }

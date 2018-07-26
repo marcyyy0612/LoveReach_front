@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
+import { Observable, of, from } from 'rxjs';
 import * as AWS from 'aws-sdk/global';
 import * as S3 from 'aws-sdk/clients/s3';
 import * as moment from 'moment';
@@ -44,12 +44,7 @@ export class SignupService {
       Key: fileName,
       Body: file
     };
-    s3.putObject(params, function (err, data) {
-      if (err) {
-        this.uploadFile(file, fileName);
-      }
-      return true;
-    });
+    return from(s3.putObject(params).promise());
   }
 
   trySignin(data): Observable<Object> {

@@ -18,11 +18,11 @@ export class ModifyProfImgComponent implements OnInit {
   private selectedFiles: FileList;
   private isFaildModify = false;
   private isSelectedFile = false;
+  private appState = new AppState();
 
   constructor(
     public dialogRef: MatDialogRef<ModifyProfImgComponent>,
     private modifyProfImgService: ModifyProfImgService,
-    private appState: AppState,
     @Inject(MAT_DIALOG_DATA) public data: DialogData
   ) { }
 
@@ -32,15 +32,12 @@ export class ModifyProfImgComponent implements OnInit {
   onOkClick() {
     const file = this.selectedFiles.item(0);
     const fileName =  UUID.UUID() + file.name;
+    this.appState.loadStart();
     this.modifyProfImgService.modifyProfImg(fileName).subscribe(response => {
-      this.appState.loadStart();
-      this.modifyProfImgService.uploadFile(file, fileName).then(function(res) {
-        location.reload();
+      this.modifyProfImgService.uploadFile(file, fileName).subscribe(res => {
         this.dialogRef.close();
         this.appState.loadEnd();
-      }).catch(function(err) {
-        this.isFaildModify = true;
-        this.appState.loadEnd();
+        location.reload();
       });
     }, error => {
       this.isFaildModify = true;

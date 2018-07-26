@@ -55,3 +55,6 @@
       [disabled]="signupForm.invalid || (isSelectedFile==false)">登録</button>
   </div>
 </form>
+<div class="loading" *ngIf="appState.loading">
+  <mat-spinner></mat-spinner>
+</div>

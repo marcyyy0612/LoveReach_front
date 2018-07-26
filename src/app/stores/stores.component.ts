@@ -33,13 +33,13 @@ export class StoresComponent implements OnInit {
   private myName: string;
   private myProfImg: string;
   private isMoreUsers = true;
+  private appState = new AppState();
   @Output() setMyAvatarEvent = new EventEmitter();
 
   constructor(
     private storesService: StoresService,
     private messagesService: MessagesService,
     private router: Router,
-    private appState: AppState,
     public dialog: MatDialog) { }
 
   ngOnInit() {
