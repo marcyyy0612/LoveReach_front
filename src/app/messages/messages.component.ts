@@ -1,4 +1,5 @@
 import { Component, ViewChild, Output, EventEmitter, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { AppState } from '../app.state';
 import { MessagesService } from './messages.service';
 import { NgxAutoScroll } from 'ngx-auto-scroll';
 
@@ -18,6 +19,7 @@ export class MessagesComponent implements OnChanges {
   private partnerImg: string;
   private messages: Array<Object>;
   private sendMessage: string;
+  private appState = new AppState();
   @Input() selectedUser: Object;
   @Output() toStoreFromMessages = new EventEmitter();
 
@@ -35,6 +37,7 @@ export class MessagesComponent implements OnChanges {
   }
 
   showMessages(): void {
+    this.appState.loadStart();
     this.messages = new Array();
     this.partnerId = this.selectedUser['USER_ID'];
     this.partnerName = this.selectedUser['USER_NAME'];
@@ -45,6 +48,7 @@ export class MessagesComponent implements OnChanges {
         for (let i = 0; i < response['MESSAGES'].length; i++) {
           this.messages.push(response['MESSAGES'][i]);
         }
+        this.appState.loadEnd();
       }
     });
   }

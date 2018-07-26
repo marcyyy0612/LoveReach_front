@@ -52,7 +52,7 @@
   <div mat-dialog-actions>
     <button mat-button (click)="onSigninButton()">ログイン</button>
     <button mat-button type="submit" (click)="onOkClick(data)" 
-      [disabled]="signupForm.invalid || (isSelectedFile==false)">登録</button>
+      [disabled]="signupForm.invalid || (isSelectedFile==false || appState.loading)">登録</button>
   </div>
 </form>
 <div class="loading" *ngIf="appState.loading">

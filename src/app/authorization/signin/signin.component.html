@@ -18,7 +18,8 @@
   </div>
   <div mat-dialog-actions>
     <button mat-button (click)="onSignupButton()">SignUp</button>
-    <button mat-button type="submit" (click)="onOkClick(data)" [disabled]="signinForm.invalid">Ok</button>
+    <button mat-button type="submit" (click)="onOkClick(data)" 
+      [disabled]="signinForm.invalid || appState.loading">Ok</button>
   </div>
 </form>
 <div *ngIf="isFaildSignin" class="faild-signin">ログインに失敗しました</div>

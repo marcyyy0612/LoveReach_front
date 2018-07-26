@@ -16,8 +16,8 @@
     </h2>
   </div>
   <div class="select-button">
-    <button mat-button (click)="selectMatching(0)"><img src="assets/images/nope_button.svg"></button>
-    <button mat-button (click)="selectMatching(1)"><img src="assets/images/like_button.svg"></button>
+    <button mat-button [disabled]="appState.loading" (click)="selectMatching(0)"><img src="assets/images/nope_button.svg"></button>
+    <button mat-button [disabled]="appState.loading" (click)="selectMatching(1)"><img src="assets/images/like_button.svg"></button>
   </div>
 </div>
 <div class="store" *ngIf="isMoreUsers == false">
