@@ -17,7 +17,7 @@
     </mat-form-field>
   </div>
   <div mat-dialog-actions>
-    <button mat-button (click)="onSignupButton()">SignUp</button>
+    <button mat-button (click)="onSignupButton()" [disabled]="appState.loading">SignUp</button>
     <button mat-button type="submit" (click)="onOkClick(data)" 
       [disabled]="signinForm.invalid || appState.loading">Ok</button>
   </div>
