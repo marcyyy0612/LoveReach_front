@@ -1,0 +1,17 @@
+.right {
+  float: right;
+}
+
+.left {
+  float: left;
+}
+
+.faild-signin {
+  color: #FC0101;
+  font: x-small;
+}
+
+.faild-message {
+  font-size: small;
+  color: #FC0101;
+}

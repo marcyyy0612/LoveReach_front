@@ -6,10 +6,13 @@
   <body>
     <div class="container"> 
       <div class="left_wrap">
-        <mat-card>
+        <mat-card class="setting-area">
           <mat-card-content>
-            <button mat-button *ngIf="showFlg" (click)="onPartnersButton()">←</button>
-            <button mat-button (click)="onProfileButton()">自己プロフィール</button>
+            <button mat-button *ngIf="showFlg" (click)="onBackButton()">
+              <img class="back-icon" src="assets/images/back_icon.png">
+            </button>
+            <img mat-card-avatar src="{{myAvatar}}">
+            <button mat-button class="setting-button" (click)="onProfileButton()">設定</button>
           </mat-card-content>
         </mat-card>
         <div *ngIf="showFlg">

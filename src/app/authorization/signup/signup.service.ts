@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
+import { Observable, of, from } from 'rxjs';
 import * as AWS from 'aws-sdk/global';
 import * as S3 from 'aws-sdk/clients/s3';
 import * as moment from 'moment';
@@ -13,24 +13,25 @@ export class SignupService {
 
   constructor(private http: HttpClient) { }
 
-  trySignup(data): Observable<Object> {
+  trySignup(data, fileName): Observable<Object> {
     const today = moment().format('YYYY-MM-DD');
     const url = '/api/signup';
     const body = {
       userId: 0, // userIdはAPI側でオートインクリメントしているのでなんでもおｋ
       userName: data.userName,
-      sex: 1,
+      sex: Number(data.sex),
       birthday: data.birthday,
       profile: data.profile,
       createdAt: today,
       mailAddress: data.mailAddress,
       password: data.password,
-      profileImage: 'user1.jpg'
+      profileImage: fileName
     };
+    console.log('trySignup');
     return this.http.post(url, body);
   }
 
-  uploadFile(file) {
+  uploadFile(file, fileName) {
     AWS.config.update({
       accessKeyId: environment.S3_ACCESS_KEY,
       secretAccessKey: environment.S3_SECRET_KEY,
@@ -39,17 +40,21 @@ export class SignupService {
     const s3 = new S3();
 
     const params = {
-      Bucket: 'final-training2018-marcy',
-      Key: file.name,
+      Bucket: environment.S3_BUCKET_NAME,
+      Key: fileName,
       Body: file
     };
-    s3.putObject(params, function (err, data) {
-      if (err) {
-        console.log('There was an error uploading your file: ', err);
-        return false;
-      }
-      console.log('Successfully uploaded file.', data);
-      return true;
-    });
+    return from(s3.putObject(params).promise());
   }
+
+  trySignin(data): Observable<Object> {
+    const url = '/api/signin';
+    const body = {
+      mailAddress: data.mailAddress,
+      password: data.password
+    };
+
+    return this.http.post(url, body);
+  }
+
 }

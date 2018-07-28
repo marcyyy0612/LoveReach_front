@@ -3,6 +3,15 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import * as moment from 'moment';
 
+interface UserObj {
+  userId: number;
+  userName: string;
+  sex: number;
+  birthday: string;
+  profile: string;
+  imgPath: string;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -25,7 +34,11 @@ export class MessagesService {
       sendDatetime: now
     };
 
-    console.log(message);
     return this.http.post(url, message);
+  }
+
+  getMyInfo(): Observable<UserObj> {
+    const url = '/api/users/me';
+    return this.http.get<UserObj>(url);
   }
 }

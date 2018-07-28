@@ -1,0 +1,29 @@
+<form (ngSubmit)="onOkClick(data)" #modifyForm="ngForm">
+  <h2>プロフィールの編集</h2>
+  <div mat-dialog-content>
+    <mat-form-field>
+      表示名
+      <span class="faild-message"*ngIf="data.userName==null">*必須</span>
+      <input matInput class="right" name="userName" [(ngModel)]="data.userName" required>
+    </mat-form-field>
+    <div>
+      <span>興味のある性別</span>
+      <span class="faild-message"*ngIf="data.sex==null">*必須</span>
+      <div >
+        <mat-button-toggle-group  name="sex" aria-label="sex" [(ngModel)]="data.sex" required>
+          <mat-button-toggle value=1>♂</mat-button-toggle>
+        <mat-button-toggle value=2>♀</mat-button-toggle>
+        <mat-button-toggle value=3>♂ + ♀</mat-button-toggle>
+        </mat-button-toggle-group>
+      </div>
+    </div>
+    <mat-form-field>
+      ひとこと
+      <input matInput class="right" name="profile" [(ngModel)]="data.profile">
+    </mat-form-field>
+    <div *ngIf="isFaildSignup" class="faild-message">修正に失敗しました</div>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button type="submit" (click)="onOkClick(data)" [disabled]="modifyForm.invalid">変更</button>
+  </div>
+</form>

@@ -1,0 +1,7 @@
+.item {
+  border-bottom:1px solid #BDBDBD;
+  background-color: #FFFFFF;
+}
+.item:hover {
+  background-color: #F2F2F2;
+}

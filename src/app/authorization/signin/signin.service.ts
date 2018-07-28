@@ -11,7 +11,6 @@ export class SigninService {
   ) { }
 
   trySignin(data): Observable<Object> {
-    // const url = 'http://elb-marcy-979779113.ap-northeast-1.elb.amazonaws.com/api/signin';
     const url = '/api/signin';
     const body = {
       mailAddress: data.mailAddress,

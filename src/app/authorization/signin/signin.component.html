@@ -1,14 +1,28 @@
-<div mat-dialog-content>
-  <div>
-    メールアドレス
-    <input matInput [(ngModel)]="data.mailAddress">
+<form (ngSubmit)="onOkClick(data)" #signinForm="ngForm">
+  <div mat-dialog-content>
+    <mat-form-field>
+      メールアドレス
+      <span class="faild-message"*ngIf="data.mailAddress==null">*必須</span>
+      <input matInput name="mailAddress" type="email"
+                      pattern="^[0-9A-Za-z@._]+$" [(ngModel)]="data.mailAddress" required
+                      minlength="{{addressMinLength}}" maxlength="{{addressMaxLength}}">
+      <mat-error *ngIf="true">10〜50文字で入力してください</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      パスワード
+      <span class="faild-message"*ngIf="data.password==null">*必須</span>
+      <input matInput name="password" type="password" [(ngModel)]="data.password" required
+                                      minlength="{{passwordMinLength}}" maxlength="{{passwordMaxLength}}">
+      <mat-error *ngIf="true">8〜15文字で入力してください</mat-error>
+    </mat-form-field>
   </div>
-  <div>
-    パスワード
-    <input matInput [(ngModel)]="data.password">
+  <div mat-dialog-actions>
+    <button mat-button (click)="onSignupButton()" [disabled]="appState.loading">SignUp</button>
+    <button mat-button type="submit" (click)="onOkClick(data)" 
+      [disabled]="signinForm.invalid || appState.loading">Ok</button>
   </div>
-</div>
-<div mat-dialog-actions>
-  <button mat-button (click)="onSignupButton()">SignUp</button>
-  <button mat-button (click)="onOkClick(data)">Ok</button>
+</form>
+<div *ngIf="isFaildSignin" class="faild-signin">ログインに失敗しました</div>
+<div class="loading" *ngIf="appState.loading">
+  <mat-spinner></mat-spinner>
 </div>

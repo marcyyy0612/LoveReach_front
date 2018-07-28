@@ -4,6 +4,9 @@ import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HttpClientXsrfModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { CookieService } from 'ngx-cookie-service';
+import { NgxAutoScrollModule } from 'ngx-auto-scroll';
+
 import {
   MatCheckboxModule,
   MatRadioModule,
@@ -12,7 +15,8 @@ import {
   MatButtonModule,
   MatButtonToggleModule,
   MatDialogModule,
-  MatListModule
+  MatListModule,
+  MatProgressSpinnerModule
 } from '@angular/material';
 
 import { AppComponent } from './app.component';
@@ -28,12 +32,14 @@ import { ProfileListComponent } from './profile-list/profile-list.component';
 import { AuthGuardService } from './auth-guard.service';
 import { SignupComponent } from './authorization/signup/signup.component';
 import { AuthorizationComponent } from './authorization/authorization.component';
+import { MatchingComponent } from './matching/matching.component';
+import { AppState } from './app.state';
+import { ModifyProfComponent } from './modify-prof/modify-prof.component';
+import { ModifyProfImgComponent } from './modify-prof-img/modify-prof-img.component';
 
 const appRoutes: Routes = [
   { path: '', component: TopComponent },
   { path: 'app/recs', component: RecsComponent },
-  { path: 'app/profile', component: ProfileComponent },
-  { path: 'app/messages', component: MessagesComponent},
   { path: '**', redirectTo: '', pathMatch: 'full'}
 ];
 
@@ -50,17 +56,23 @@ const appRoutes: Routes = [
     StoresComponent,
     MessagesListComponent,
     ProfileListComponent,
-    AuthorizationComponent
+    AuthorizationComponent,
+    MatchingComponent,
+    ModifyProfComponent,
+    ModifyProfImgComponent,
   ],
   entryComponents: [
-    AuthorizationComponent
+    AuthorizationComponent,
+    MatchingComponent,
+    ModifyProfComponent,
+    ModifyProfImgComponent
   ],
   imports: [
     HttpClientModule,
     HttpClientXsrfModule.withOptions({
       cookieName: 'PLAY_SESSION_CSRF',
       headerName: 'Csrf-Token'
-   }),
+    }),
     RouterModule.forRoot(appRoutes),
     BrowserModule,
     BrowserAnimationsModule,
@@ -72,9 +84,14 @@ const appRoutes: Routes = [
     MatCardModule,
     MatInputModule,
     MatDialogModule,
-    MatListModule
+    MatListModule,
+    MatProgressSpinnerModule,
+    NgxAutoScrollModule
   ],
-  providers: [],
+  providers: [
+    CookieService,
+    AppState
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

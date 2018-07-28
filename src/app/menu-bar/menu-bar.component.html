@@ -1,6 +1,9 @@
 <mat-card>
   <mat-card-content>
-    tinder
-    <button class="authorizeButton" mat-button (click)="openAuthorizeWindow()">ログイン</button>
+    <img class="logo" src="../assets/images/lovereach.png">
+    <button class="authorizeButton" mat-button (click)="onAuthorizeButton()" [disabled]="isOnClickButton">ログイン</button>
   </mat-card-content>
 </mat-card>
+<div class="loading" *ngIf="appState.loading">
+  <mat-spinner></mat-spinner>
+</div>

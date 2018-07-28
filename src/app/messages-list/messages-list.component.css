@@ -1,0 +1,6 @@
+.user-list {
+  border-bottom:1px solid #BDBDBD;
+}
+.user-list:hover {
+  background-color: #F2F2F2;
+}

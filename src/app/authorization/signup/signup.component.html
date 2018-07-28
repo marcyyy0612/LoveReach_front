@@ -1,36 +1,60 @@
-<div mat-dialog-content>
-  <div>
-    ユーザ名
-    <input matInput [(ngModel)]="data.userName">
+<form (ngSubmit)="onOkClick(data)" #signupForm="ngForm">
+  <div mat-dialog-content>
+    <mat-form-field>
+      ユーザ名
+      <span class="faild-message"*ngIf="data.userName==null">*必須</span>
+      <input matInput class="right" name="userName" [(ngModel)]="data.userName" required>
+    </mat-form-field>
+    <div>
+      <span>興味のある性別</span>
+      <span class="faild-message"*ngIf="data.sex==null">*必須</span>
+      <div>
+        <mat-button-toggle-group  name="sex" aria-label="sex" [(ngModel)]="data.sex" required>
+          <mat-button-toggle value=1>♂</mat-button-toggle>
+          <mat-button-toggle value=2>♀</mat-button-toggle>
+          <mat-button-toggle value=3>♂ + ♀</mat-button-toggle>
+        </mat-button-toggle-group>
+      </div>
+    </div>
+    <mat-form-field>
+      誕生日
+      <span class="faild-message"*ngIf="data.birthday==null">*必須</span>
+      <input matInput class="right" type="date" name="birthday" min="1900-01-01" max="2000-01-01" [(ngModel)]="data.birthday" required>
+    </mat-form-field>
+    <div>
+      写真
+      <span class="faild-message"*ngIf="isSelectedFile==false">*必須</span>
+      <div>
+        <input type="file" accept="image/jpeg, image/png" name="file" (change)="selectedFile($event)" required>
+      </div>
+    </div>
+    <mat-form-field>
+      ひとこと
+      <input matInput class="right" name="profile" [(ngModel)]="data.profile">
+    </mat-form-field>
+    <mat-form-field>
+      メールアドレス
+      <span class="faild-message"*ngIf="data.mailAddress==null">*必須</span>
+      <input matInput type="email" name="mailAddress"
+                                   pattern="^[0-9A-Za-z@._]+$" [(ngModel)]="data.mailAddress" required
+                                    minlength="{{addressMinLength}}" maxlength="{{addressMaxLength}}">
+      <mat-error *ngIf="true">10〜50文字で入力してください</mat-error>
+    </mat-form-field>
+    <div *ngIf="isFaildSignup" class="faild-message">すでに使用されているメールアドレスです</div>
+    <mat-form-field>
+      パスワード
+      <span class="faild-message"*ngIf="data.password==null">*必須</span>
+      <input matInput class="right" type="password" name="password" [(ngModel)]="data.password" required
+                                                    minlength="{{passwordMinLength}}" maxlength="{{passwordMaxLength}}">
+      <mat-error *ngIf="true">8〜15文字で入力してください</mat-error>
+    </mat-form-field>
   </div>
-  <div>
-    性別
-    <mat-button-toggle-group name="sex" aria-label="sex">
-      <mat-button-toggle value="bold">male</mat-button-toggle>
-      <mat-button-toggle value="italic">female</mat-button-toggle>
-    </mat-button-toggle-group>
+  <div mat-dialog-actions>
+    <button mat-button (click)="onSigninButton()" [disabled]="appState.loading">ログイン</button>
+    <button mat-button type="submit" (click)="onOkClick(data)" 
+      [disabled]="signupForm.invalid || (isSelectedFile==false || appState.loading)">登録</button>
   </div>
-  <div>
-    誕生日
-    <input matInput [(ngModel)]="data.birthday">
-  </div>
-  <div>
-    <input type="file"(change)="selectedFile($event)">
-  </div>
-  <div>
-    ひとこと
-    <input matInput [(ngModel)]="data.profile">
-  </div>
-  <div>
-    メールアドレス
-    <input matInput [(ngModel)]="data.mailAddress">
-  </div>
-  <div>
-    パスワード
-    <input matInput [(ngModel)]="data.password">
-  </div>
-</div>
-<div mat-dialog-actions>
-  <button mat-button (click)="onSigninButton()">ログイン</button>
-  <button mat-button (click)="onOkClick(data)">Ok</button>
+</form>
+<div class="loading" *ngIf="appState.loading">
+  <mat-spinner></mat-spinner>
 </div>

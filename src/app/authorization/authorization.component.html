@@ -1,5 +1,7 @@
-<button mat-mini-fab (click)="onNoClick()">×</button>
-<h1 mat-dialog-title>さあ始めよう</h1>
+<button class="cancel-button" mat-button (click)="onNoClick()">
+  <img class="cancel-img" src="../assets/images/cancel.svg">
+</button>
+<h1 class="title" mat-dialog-title>さあ始めよう</h1>
 <app-signin (toSignup)="toSignup()" [hidden]="signupMode"></app-signin>
 <div *ngIf='signupMode'>
   <app-signup (toSignin)="toSignin()"></app-signup>

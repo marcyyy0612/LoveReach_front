@@ -19,14 +19,28 @@ interface Users {
   users: Array<UserObj>;
 }
 
+interface ShopObj {
+  shopId: number;
+  shopName: string;
+  shopUrl: string;
+}
+
+interface Shops {
+  shops: Array<ShopObj>;
+}
+
+interface MatchingResult {
+  result: string;
+  isMatching: boolean;
+}
+
 @Injectable({
   providedIn: 'root'
 })
 export class StoresService {
   constructor(private http: HttpClient) { }
 
-  insertMatchingStatus(partnerId: number, status: number): boolean {
-    let matchingResult: boolean;
+  insertMatchingStatus(partnerId: number, status: number): Observable<MatchingResult> {
     const nowTime = moment().format('YYYY-MM-DD HH:mm:ss');
     const url = '/api/users/matching';
     const body = {
@@ -36,27 +50,17 @@ export class StoresService {
       selectedDatetime: nowTime
     };
 
-    this.http.post(url, body)
-      .subscribe(response => {
-        switch (response['result']) {
-          case 'success':
-            matchingResult = true;
-            break;
-          case 'failure':
-            matchingResult = false;
-            break;
-        }
-      },
-        error => {
-          console.log('error');
-        }
-      );
-    return matchingResult;
+    return this.http.post<MatchingResult>(url, body);
   }
 
   getStoresUser(): Observable<Users> {
     const url = '/api/users/list';
     return this.http.get<Users>(url);
+  }
+
+  getMyInfo(): Observable<UserObj> {
+    const url = '/api/users/me';
+    return this.http.get<UserObj>(url);
   }
 
   getUsersImgPath(imgName: string): string {
@@ -73,5 +77,10 @@ export class StoresService {
     };
 
     return s3.getSignedUrl('getObject', params);
+  }
+
+  getShops(): Observable<Shops> {
+    const url = '/api/shops/list';
+    return this.http.get<Shops>(url);
   }
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ProfileService } from './profile.Service';
+import { ProfileService } from './profile.service';
+import { AppState } from '../app.state';
 
 @Component({
   selector: 'app-profile',
@@ -8,8 +9,9 @@ import { ProfileService } from './profile.Service';
 })
 export class ProfileComponent implements OnInit {
 
+  private myInfo;
   private myProfileImg: string;
-  private user;
+  private appState = new AppState();
   constructor(private profileService: ProfileService) { }
 
   ngOnInit() {
@@ -17,12 +19,11 @@ export class ProfileComponent implements OnInit {
   }
 
   setMyInfo() {
-    const imgName = 'user1.jpg';
-    this.profileService.fetchMyInfo().subscribe ( response => {
-      this.user = response['Me'][0];
-        console.log(this.user['PROFILE_IMAGE']);
-      this.myProfileImg = this.profileService.getMyProfileImg(imgName);
+    this.appState.loadStart();
+    this.profileService.getMyInfo().subscribe ( response => {
+      this.myInfo = response['Me'][0];
+      this.myProfileImg = this.profileService.getMyProfileImg(this.myInfo['PROFILE_IMAGE']);
+      this.appState.loadEnd();
     });
   }
-
 }

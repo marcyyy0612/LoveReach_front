@@ -1,11 +1,16 @@
-button.signinButton {
+.logo {
+  width: 200px;
+  height: auto;
+}
+
+.authorizeButton {
   background-color: #EB5D6B;
   font-weight: bold;
   color: #fff;
+  float: right;
 }
 
-button.signupButton {
-  /* background-color: #EB5D6B; */
-  font-weight: bold;
-  color: #000;
+.loading {
+  top: 50%;
+  left: 50%;
 }
