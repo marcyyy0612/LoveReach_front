@@ -1,23 +1,30 @@
 <div class="store" *ngIf="isMoreUsers">
   <div (swipeleft)="swipe($event.type)" (swiperight)="swipe($event.type)">
     <mat-card class="card">
-      <h2>
-        <span class="like" *ngIf="like">LIKE</span>
-        <span class="nope" *ngIf="nope">NOPE</span>
-      </h2>
-      <img mat-card-image src="{{imgPath}}" onMouseDown="return false;" onSelectStart="return false" oncontextmenu="return false;">
+      <img mat-card-image class="prof-img" src="{{imgPath}}" onMouseDown="return false;" onSelectStart="return false" oncontextmenu="return false;">
       <div class="loading" *ngIf="appState.loading">
         <mat-spinner></mat-spinner>
       </div>
-      <mat-card-content>
-        <h2 class="userName" *ngIf="users">{{userName}}</h2>
-        <h4 class="userName" *ngIf="users">{{profile}}</h4>
+      <mat-card-content class="user-name">
+        <h1 class="userName" *ngIf="users">{{userName}}</h1>
+        <h3 class="userName" *ngIf="users">{{profile}}</h3>
       </mat-card-content>
     </mat-card>
+    <h2>
+      <span class="like" *ngIf="like">LIKE</span>
+      <span class="nope" *ngIf="nope">NOPE</span>
+    </h2>
   </div>
-  <button mat-button (click)="selectMatching(0)"><img src="assets/images/nope_button.svg"></button>
-  <button mat-button (click)="selectMatching(1)"><img src="assets/images/like_button.svg"></button>
+  <div class="select-button">
+    <button mat-button (click)="selectMatching(0)"><img src="assets/images/nope_button.svg"></button>
+    <button mat-button (click)="selectMatching(1)"><img src="assets/images/like_button.svg"></button>
+  </div>
 </div>
-<div *ngIf="isMoreUsers == false">
-  選択できる人がいません
+<div class="store" *ngIf="isMoreUsers == false">
+  <h1 class="nomore-user">
+    現在選択できる人がいません...
+  </h1>
+  <div class="loading">
+    <mat-spinner></mat-spinner>
+  </div>
 </div>

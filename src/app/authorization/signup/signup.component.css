@@ -15,3 +15,8 @@
 .dialog {
   line-height: 2;
 }
+
+.faild-message {
+  color: #FC0101;
+  font: x-small;
+}

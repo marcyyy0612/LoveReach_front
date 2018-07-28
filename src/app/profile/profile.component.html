@@ -1,7 +1,9 @@
-<mat-card class="card">
-  <img mat-card-image src="{{myProfileImg}}" onMouseDown="return false;" onSelectStart="return false" oncontextmenu="return false;">
-  <mat-card-content>
-    <h2>{{myInfo['USER_NAME']}}</h2>
-    <h4>{{myInfo['PROFILE']}}</h4>
-  </mat-card-content>
-</mat-card>
+<div class="main-area">
+  <mat-card class="card">
+    <img mat-card-image class="prof-img" src="{{myProfileImg}}" onMouseDown="return false;" onSelectStart="return false" oncontextmenu="return false;">
+    <mat-card-content class="user-name">
+      <h2>{{myInfo['USER_NAME']}}</h2>
+      <h4>{{myInfo['PROFILE']}}</h4>
+    </mat-card-content>
+  </mat-card>
+</div>

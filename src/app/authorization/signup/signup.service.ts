@@ -27,6 +27,7 @@ export class SignupService {
       password: data.password,
       profileImage: fileName
     };
+    console.log('trySignup');
     return this.http.post(url, body);
   }
 

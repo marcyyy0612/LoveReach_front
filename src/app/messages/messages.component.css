@@ -2,16 +2,19 @@
   background-color: #BFFF00;
   width: 40%;
   margin-left: auto;
+  margin-top: 10px;
   text-align: left;
-  max-width:100%;
   border-radius:20px;
+  word-wrap: break-word;
 }
 
 .partner {
   width: 40%;
   margin-right: auto;
+  margin-top: 10px;
   text-align: left;
   border-radius:20px;
+  word-wrap: break-word;
 }
 
 .dateTime {
@@ -22,16 +25,15 @@
   float: right;
 }
 
+.top-area {
+  height: 5vh;
+}
 .message-area {
-  /* height: scroll; */
-  height: 550px;
+  height: 70vh;
   overflow: scroll;
 }
 .bottom-area {
-  width: 40%;
-  margin: 0 auto;
-  position: absolute;
-  bottom: 0;
+  height: 5vh;
 }
 .input-area {
   font-size:100%;
@@ -46,7 +48,8 @@
 }
 
 .container {
-  width: max-width;
+  width: 100%;
+  height: 100vh;
   margin: auto; 
 }
 .container:after { 
@@ -56,16 +59,52 @@
 }
 .left_wrap {
   width: 60%;
-  height: 100%;
+  height: 100vh;
   float: left;
 }
 .right_wrap {
+  position: relative;
   width: 39%;
-  height: 100%;
+  height: 100vh;
   float: right;
 }
 
-.remove-button {
-  width: 1%;
-  height: 1%;
+.card {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateY(-50%) translateX(-50%);
+  -webkit- transform: translateY(-50%) translateX(-50%);
+  width: 80%;
+  height: 50vh;
+  border-radius:20px;
+}
+
+.prof-img {
+  position: absolute;
+  top: 54%;
+  left: 54%;
+  transform: translateY(-50%) translateX(-50%);
+  -webkit- transform: translateY(-50%) translateX(-50%);
+  width: 100%;
+  height: 100%;
+  border-radius:20px;
+}
+
+.user-name {
+  font: bold;
+  color: #fff;
+  position: absolute;
+  top: 90%;
+  left: 10%;
+  transform: translateY(-90%) translateX(-10%);
+  -webkit- transform: translateY(-90%) translateX(-10%);
+}
+
+.cancel-img {
+  width: 20px;
+}
+
+.cancel-button {
+  float: right;
 }
