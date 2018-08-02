@@ -41,4 +41,20 @@ export class RecsService {
 
     return s3.getSignedUrl('getObject', params);
   }
+
+  insertLocation(): void {
+    const url = '/api/location';
+
+    var geoSuccess = function(position) {
+      const body = {
+        latitude: position.coords.latitude,
+        longitude: position.coords.longitude
+      };
+      this.post(url, body).subscribe(response => {});
+    };
+
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(geoSuccess.bind(this.http));
+    }
+  }
 }

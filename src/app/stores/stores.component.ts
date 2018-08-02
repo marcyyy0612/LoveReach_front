@@ -49,7 +49,6 @@ export class StoresComponent implements OnInit {
   setStoresUser() {
     this.appState.loadStart();
     this.storesService.getStoresUser().subscribe(response => {
-      // this.getCurrentLocation();
       if (response['USERS'].length === 0) {
         this.isMoreUsers = false;
       } else {
@@ -71,16 +70,6 @@ export class StoresComponent implements OnInit {
       this.myName = response['Me'][0]['USER_NAME'];
       this.myProfImg = this.getUsersImage(response['Me'][0]['PROFILE_IMAGE']);
     });
-  }
-
-  getCurrentLocation(): Map<string, number> {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(function(position) {
-        return new Map([['latitude', position.coords.latitude], ['longitude', position.coords.longitude]]);
-      });
-    } else {
-      return new Map([['latitude', 0], ['longitude', 0]]);
-    }
   }
 
   getUsersImage(imgName: string): string {

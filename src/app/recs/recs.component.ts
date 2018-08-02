@@ -21,6 +21,7 @@ export class RecsComponent implements OnInit {
   ngOnInit() {
     this.mode = 'stores';
     this.setMyInfo();
+    this.recsService.insertLocation();
   }
 
   onBackButton() {
