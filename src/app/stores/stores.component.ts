@@ -90,6 +90,7 @@ export class StoresComponent implements OnInit {
           const partnerImg = this.imgPath;
           this.openMatchingDialog(partnerName, partnerImg);
           this.storesService.getShops().subscribe(shopRes => {
+            console.log(shopRes);
             const maxNum = shopRes['SHOPS'].length;
             const randNum = Math.floor(Math.random() * maxNum);
             const firstMessage = '今からここに行きましょー！';

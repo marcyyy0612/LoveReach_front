@@ -2,6 +2,7 @@
   position: relative;
   width: 100%;
   height: 100vh;
+  display: flex;
 }
 
 .img {
@@ -52,4 +53,16 @@
   left: 60%;
   transform: translateY(-50%) translateX(-50%);
   -webkit- transform: translateY(-50%) translateX(-50%);
+}
+
+.logo {
+  width: 200px;
+  height: auto;
+}
+
+.authorizeButton {
+  background-color: #EB5D6B;
+  font-weight: bold;
+  color: #fff;
+  float: right;
 }

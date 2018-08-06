@@ -6,6 +6,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { AppState } from '../app.state';
 import { ModifyProfComponent } from '../modify-prof/modify-prof.component';
 import { ModifyProfImgComponent } from '../modify-prof-img/modify-prof-img.component';
+import { DeleteAccountComponent } from '../delete-account/delete-account.component';
 
 @Component({
   selector: 'app-profile-list',
@@ -31,6 +32,14 @@ export class ProfileListComponent implements OnInit {
       this.cookieService.deleteAll();
       this.router.navigate(['/']);
       location.reload();
+    });
+  }
+
+  deleteAccount() {
+    const dialogRef = this.dialog.open(DeleteAccountComponent, {
+      'width': '350px',
+      'height': '500px',
+      'data': {}
     });
   }
 

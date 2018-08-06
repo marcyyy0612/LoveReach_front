@@ -33,7 +33,7 @@
     </mat-card>
     <mat-card class="bottom-area">
       <form>
-        <input matInput class="input-area" name="message" placeholder="メッセージを入力..." [(ngModel)]="sendMessage" required>
+        <input matInput class="input-area" name="message" placeholder="メッセージを入力..." [(ngModel)]="sendMessage" autocomplete="off" required>
         <button mat-button class="send-button" (click)="onSendClick()">送信</button>
       </form>
     </mat-card>

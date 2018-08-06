@@ -1,4 +1,5 @@
 import { Component, ViewChild, Output, EventEmitter, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
 import { AppState } from '../app.state';
 import { MessagesService } from './messages.service';
 import { NgxAutoScroll } from 'ngx-auto-scroll';
@@ -56,6 +57,7 @@ export class MessagesComponent implements OnChanges {
   onSendClick(): void {
     this.messagesService.sendMessages(this.sendMessage, this.partnerId)
     .subscribe(response => {
+      this.sendMessage = '';
       this.showMessages();
     });
   }
