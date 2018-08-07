@@ -1,4 +1,4 @@
-import { Component, ViewChild, Output, EventEmitter, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, ViewChild, Output, EventEmitter, Input, OnChanges, SimpleChanges, NgZone, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { AppState } from '../app.state';
 import { MessagesService } from './messages.service';
@@ -12,7 +12,9 @@ import { NgxAutoScroll } from 'ngx-auto-scroll';
 
 export class MessagesComponent implements OnChanges {
 
-  constructor(private messagesService: MessagesService) { }
+  constructor(
+    private messagesService: MessagesService,
+  ) {}
 
   private myInfo;
   private partnerId: number;
@@ -21,6 +23,7 @@ export class MessagesComponent implements OnChanges {
   private messages: Array<Object>;
   private sendMessage: string;
   private appState = new AppState();
+
   @Input() selectedUser: Object;
   @Output() toStoreFromMessages = new EventEmitter();
 

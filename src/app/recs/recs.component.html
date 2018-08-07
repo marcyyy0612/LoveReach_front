@@ -1,41 +1,37 @@
-<html lang="ja">
-  <head>
-    <meta charset="UTF-8">
-    <title>tinder</title>
-  </head>
-  <body>
-    <div class="container"> 
-      <div class="left_wrap">
-        <mat-card class="setting-area">
-          <mat-card-content>
-            <button mat-button *ngIf="showFlg" (click)="onBackButton()">
-              <img class="back-icon" src="assets/images/back_icon.png">
-            </button>
-            <img mat-card-avatar src="{{myAvatar}}">
-            <button mat-button class="setting-button" (click)="onProfileButton()">設定</button>
-          </mat-card-content>
-        </mat-card>
-        <div *ngIf="showFlg">
-          <app-profile-list></app-profile-list><!-- デフォルト，フォルスだから消えている -->
-        </div>
-        <div [hidden]="showFlg">
-          <app-messages-list (messageToSelectedUser)="messageToSelectedUser($event)"></app-messages-list><!-- デフォルト，フォルスだから表示されている -->
-        </div>
+<mat-sidenav-container> 
+  <mat-sidenav #sidenav mode="{{sidenavMode}}" opened="{{sidenavOpened}}" class="side-bar">
+    <mat-card class="setting-area">
+      <mat-card-content>
+        <button mat-button *ngIf="showFlg" (click)="onBackButton()">
+          <img class="back-icon" src="assets/images/back_icon.png">
+        </button>
+        <img mat-card-avatar src="{{myAvatar}}">
+        <button mat-button class="setting-button" (click)="onProfileButton()">設定</button>
+      </mat-card-content>
+    </mat-card>
+    <div *ngIf="showFlg">
+      <app-profile-list></app-profile-list><!-- デフォルト，フォルスだから消えている -->
+    </div>
+    <div [hidden]="showFlg">
+      <app-messages-list (messageToSelectedUser)="messageToSelectedUser($event)"></app-messages-list><!-- デフォルト，フォルスだから表示されている -->
+    </div>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div *ngIf="sidenav.mode === 'over'">
+      <mat-icon (click)="toggleSidenav($event)">
+        <img src="assets/images/menu.svg">
+      </mat-icon>
+    </div>
+    <div [ngSwitch]="mode">
+      <div *ngSwitchCase="'stores'">
+        <app-stores></app-stores>
       </div>
-      <div class="right_wrap">
-        <div [ngSwitch]="mode">
-          <div *ngSwitchCase="'stores'">
-            <app-stores></app-stores>
-          </div>
-          <div *ngSwitchCase="'profile'">
-            <app-profile></app-profile>
-          </div>
-          <div *ngSwitchCase="'messages'">
-            <app-messages [selectedUser]="selectedUser" (toStoreFromMessages)="toStoreFromMessages($event)"></app-messages>
-          </div>
-        </div>
+      <div *ngSwitchCase="'profile'">
+        <app-profile></app-profile>
+      </div>
+      <div *ngSwitchCase="'messages'">
+        <app-messages [selectedUser]="selectedUser" (toStoreFromMessages)="toStoreFromMessages($event)"></app-messages>
       </div>
     </div>
-  </body>
-</html>
-
+  </mat-sidenav-content>
+</mat-sidenav-container>

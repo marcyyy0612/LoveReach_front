@@ -27,6 +27,7 @@
 
 .top-area {
   height: 5vh;
+  /* width: 100%; */
 }
 .message-area {
   height: 70vh;
@@ -58,7 +59,7 @@
   clear:both;
 }
 .left_wrap {
-  width: 60%;
+  width: 100%;
   height: 100vh;
   float: left;
 }

@@ -2,13 +2,11 @@
   <div class="left_wrap">
     <mat-card class="top-area">
       <img mat-card-avatar src="{{partnerImg}}">
-      {{partnerName}}さんにメッセージを送りましょう！
-      <div class="back-button">
-        <button mat-button (click)="onBackClick()">
-          <img class="cancel-img" src="../assets/images/cancel.svg">
-        </button>
-      </div>
-    </mat-card>
+      <span>{{partnerName}}さんにメッセージを送りましょう！</span>
+      <button mat-button (click)="onBackClick()">
+        <img class="cancel-img" src="../assets/images/cancel.svg">
+      </button>
+    </mat-card> 
     <mat-card class="message-area">
       <div ngx-auto-scroll lock-yoffset='10' observe-attributes>
         <div *ngFor="let message of messages"> 
@@ -36,15 +34,6 @@
         <input matInput class="input-area" name="message" placeholder="メッセージを入力..." [(ngModel)]="sendMessage" autocomplete="off" required>
         <button mat-button class="send-button" (click)="onSendClick()">送信</button>
       </form>
-    </mat-card>
-  </div>
-  <div class="right_wrap">
-    <mat-card class="card">
-      <img mat-card-image class="prof-img" src="{{partnerImg}}" onMouseDown="return false;" onSelectStart="return false" oncontextmenu="return false;">
-      <mat-card-content class="user-name">
-        <h2>{{selectedUser['USER_NAME']}}</h2>
-        <h4>{{selectedUser['PROFILE']}}</h4>
-      </mat-card-content>
     </mat-card>
   </div>
 </div>

@@ -18,7 +18,9 @@ import {
   MatDialogModule,
   MatListModule,
   MatProgressSpinnerModule,
-  MatToolbarModule
+  MatToolbarModule,
+  MatSidenavModule,
+  MatIconModule
 } from '@angular/material';
 
 import { AppComponent } from './app.component';
@@ -90,6 +92,8 @@ const appRoutes: Routes = [
     MatListModule,
     MatProgressSpinnerModule,
     MatToolbarModule,
+    MatSidenavModule,
+    MatIconModule,
     NgxAutoScrollModule
   ],
   providers: [
