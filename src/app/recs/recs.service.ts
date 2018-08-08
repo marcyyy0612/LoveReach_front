@@ -45,7 +45,7 @@ export class RecsService {
   insertLocation(): void {
     const url = '/api/location';
 
-    var geoSuccess = function(position) {
+    const geoSuccess = function(position) {
       const body = {
         latitude: position.coords.latitude,
         longitude: position.coords.longitude

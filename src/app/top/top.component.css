@@ -1,8 +1,15 @@
+.toolbar {
+  background-color: #fff;
+}
+
 .container {
   display: flex;
-  flex-flow: column nowrap;
-  justify-content: center;
+  /* flex-flow: column nowrap; */
+  flex-direction:  column;
+  /* justify-content: center; */
+  /* justify-content: space-around; */
   align-items: center;
+  align-content: space-around;
 }
 
 .logo {
@@ -14,7 +21,7 @@
   background-color: #EB5D6B;
   font-weight: bold;
   color: #fff;
-  float: right;
+  margin-right: 0;
 } 
 
 @media only screen and (max-width: 800px) {
@@ -48,8 +55,3 @@
 .nope-button {
   width:70px;
 }
-
-/* .icon-button {
-width: 70px;
-margin: middle;
-} */
