@@ -5,6 +5,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HttpClientXsrfModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { NgxAutoScrollModule } from 'ngx-auto-scroll';
 
 import {
@@ -16,11 +17,13 @@ import {
   MatButtonToggleModule,
   MatDialogModule,
   MatListModule,
-  MatProgressSpinnerModule
+  MatProgressSpinnerModule,
+  MatToolbarModule,
+  MatSidenavModule,
+  MatIconModule
 } from '@angular/material';
 
 import { AppComponent } from './app.component';
-import { MenuBarComponent } from './menu-bar/menu-bar.component';
 import { SigninComponent } from './authorization/signin/signin.component';
 import { MessagesComponent } from './messages/messages.component';
 import { RecsComponent } from './recs/recs.component';
@@ -36,6 +39,8 @@ import { MatchingComponent } from './matching/matching.component';
 import { AppState } from './app.state';
 import { ModifyProfComponent } from './modify-prof/modify-prof.component';
 import { ModifyProfImgComponent } from './modify-prof-img/modify-prof-img.component';
+import { DeleteAccountComponent } from './delete-account/delete-account.component';
+import { PartnerInfoComponent } from './partner-info/partner-info.component';
 
 const appRoutes: Routes = [
   { path: '', component: TopComponent },
@@ -46,7 +51,6 @@ const appRoutes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    MenuBarComponent,
     SigninComponent,
     SignupComponent,
     MessagesComponent,
@@ -60,12 +64,16 @@ const appRoutes: Routes = [
     MatchingComponent,
     ModifyProfComponent,
     ModifyProfImgComponent,
+    DeleteAccountComponent,
+    PartnerInfoComponent,
   ],
   entryComponents: [
     AuthorizationComponent,
     MatchingComponent,
     ModifyProfComponent,
-    ModifyProfImgComponent
+    ModifyProfImgComponent,
+    DeleteAccountComponent,
+    PartnerInfoComponent
   ],
   imports: [
     HttpClientModule,
@@ -86,6 +94,9 @@ const appRoutes: Routes = [
     MatDialogModule,
     MatListModule,
     MatProgressSpinnerModule,
+    MatToolbarModule,
+    MatSidenavModule,
+    MatIconModule,
     NgxAutoScrollModule
   ],
   providers: [

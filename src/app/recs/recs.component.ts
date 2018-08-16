@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone, Input } from '@angular/core';
 import { NgSwitch } from '@angular/common';
 import { Router } from '@angular/router';
 import { RecsService } from './recs.service';
+import { MatSidenav } from '@angular/material';
 
 @Component({
   selector: 'app-recs',
@@ -15,13 +16,47 @@ export class RecsComponent implements OnInit {
   private selectedUser: Object;
   private myInfo;
   private myAvatar: string;
-  constructor( private recsService: RecsService,
-    private router: Router) { }
+  private sidenavOpened = true;
+  private sidenavMode = 'side';
+  private windowSize: number;
+
+  constructor(
+    private recsService: RecsService,
+    private router: Router,
+    private ngZone: NgZone
+  ) {
+    window.onresize = (e) => {
+      ngZone.run(() => {
+        this.handleResizeWindow(window.innerWidth);
+      });
+    };
+  }
 
   ngOnInit() {
+    this.handleResizeWindow(window.innerWidth);
     this.mode = 'stores';
     this.setMyInfo();
     this.recsService.insertLocation();
+  }
+
+  private handleResizeWindow(width: number) {
+    this.windowSize = width;
+    if (800 < width) {
+      this.sidenavOpened = true;
+      this.sidenavMode = 'side';
+    } else {
+      this.sidenavOpened = false;
+      this.sidenavMode = 'over';
+    }
+  }
+  toggleSidenav(event) {
+    if (this.sidenavOpened === true) {
+      this.sidenavMode = 'over';
+      this.sidenavOpened = false;
+    } else {
+      this.sidenavMode = 'over';
+      this.sidenavOpened = true;
+    }
   }
 
   onBackButton() {
@@ -33,6 +68,10 @@ export class RecsComponent implements OnInit {
     this.showFlg = true;
   }
   messageToSelectedUser(user: Object) {
+    if (this.windowSize < 800) {
+      this.sidenavMode = 'over';
+      this.sidenavOpened = false;
+    }
     this.mode = 'messages';
     this.selectedUser = user;
   }

@@ -1,18 +1,17 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
-export class MenuBarService {
+export class DeleteAccountService {
 
   constructor(
     private http: HttpClient
   ) { }
 
-  isAlreadySignin() {
-    const url = '/api/isAlreadySignin';
+  tryDeleteAccount() {
+    const url = '/api/users/delete';
     return this.http.get(url);
   }
 }

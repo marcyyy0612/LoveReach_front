@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, Input } from '@angular/core';
 import { UUID } from 'angular2-uuid';
 import { FormControl, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
@@ -31,8 +31,7 @@ export class ModifyProfComponent implements OnInit {
       this.dialogRef.close();
       location.reload();
     }, error => {
-        this.isFaildModify = true;
+      this.isFaildModify = true;
     });
   }
-
 }

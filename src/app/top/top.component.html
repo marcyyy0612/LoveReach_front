@@ -1,18 +1,23 @@
+<mat-toolbar class="toolbar">
+  <mat-toolbar-row>
+    <img class="logo" src="../assets/images/lovereach.png">
+    <span style="flex: 1 1 auto"></span>
+    <button class="authorizeButton" mat-button (click)="onAuthorizeButton()" [disabled]="isOnClickButton">ログイン</button>
+  </mat-toolbar-row>
+</mat-toolbar>
 <div class="container">
   <div>
-    <body>
-      <app-menu-bar></app-menu-bar>
-    </body>
+    <span class="text">
+      今すぐ遊びに行きたい人同士が<br>
+      すぐ遊びに行けるように<br>
+    </span>
   </div>
-  <div class="left-wrap">
+  <div>
     <img class="img" src="../assets/images/sample1.jpg">
+  </div>
+  <div>
     <img class="nope-button" src="../assets/images/nope_button.svg">
     <img class="like-button" src="../assets/images/like_button.svg">
   </div>
-  <div class="right-wrap">
-    <h1 class="text">
-      今すぐ遊びに行きたい人同士が<br>
-      すぐ遊びに行けるように<br>
-    </h1>
-  </div>
 </div>
+

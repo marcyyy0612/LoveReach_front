@@ -1,0 +1,35 @@
+.card {
+  background-color: transparent;
+  box-shadow: none !important;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateY(-50%) translateX(-50%);
+  -webkit- transform: translateY(-50%) translateX(-50%);
+  width: 300px;
+  height: 400px;
+  border-radius:20px;
+}
+.prof-img {
+  position: absolute;
+  top: 55%;
+  left: 55%;
+  transform: translateY(-50%) translateX(-50%);
+  -webkit- transform: translateY(-50%) translateX(-50%);
+  width: 300px;
+  height: 400px;
+  width: 300px;
+  height: 400px;
+  object-fit: cover;
+  border-radius:20px;
+}
+
+.user-name {
+  font: bold;
+  color: #fff;
+  position: absolute;
+  top: 80%;
+  left: 10%;
+  transform: translateY(-90%) translateX(-10%);
+  -webkit- transform: translateY(-90%) translateX(-10%);
+}
