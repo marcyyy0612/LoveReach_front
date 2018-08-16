@@ -10,10 +10,10 @@
       <span>興味のある性別</span>
       <span class="faild-message"*ngIf="data.sex==null">*必須</span>
       <div >
-        <mat-button-toggle-group  name="sex" aria-label="sex" [(ngModel)]="data.sex" required>
+        <mat-button-toggle-group name="sex" aria-label="sex" [(ngModel)]="data.sex" [value]="data.sex" required>
           <mat-button-toggle value=1>♂</mat-button-toggle>
-        <mat-button-toggle value=2>♀</mat-button-toggle>
-        <mat-button-toggle value=3>♂ + ♀</mat-button-toggle>
+          <mat-button-toggle value=2>♀</mat-button-toggle>
+          <mat-button-toggle value=3>♂ + ♀</mat-button-toggle>
         </mat-button-toggle-group>
       </div>
     </div>

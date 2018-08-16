@@ -7,9 +7,9 @@
   /* flex-flow: column nowrap; */
   flex-direction:  column;
   /* justify-content: center; */
-  /* justify-content: space-around; */
+  justify-content: space-around;
   align-items: center;
-  align-content: space-around;
+  /* align-content: space-around; */
 }
 
 .logo {
@@ -25,6 +25,9 @@
 } 
 
 @media only screen and (max-width: 800px) {
+  .text {
+    font-weight: 900;
+  }
   .img {
     /* display: block; */
     width: auto;
@@ -35,6 +38,10 @@
 }
 
 @media only screen and (min-width: 801px) {
+  .text {
+    font-size: xx-large;
+    font-weight: 900;
+  }
   .img {
     /* display: block; */
     /* width: auto; */
@@ -44,9 +51,6 @@
   }
 }
 
-.text {
-  font-weight: 900;
-}
 
 .like-button {
   width:70px;

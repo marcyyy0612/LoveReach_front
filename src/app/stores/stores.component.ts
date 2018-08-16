@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { StoresService } from './stores.service';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { Router } from '@angular/router';
@@ -34,7 +34,6 @@ export class StoresComponent implements OnInit {
   private myProfImg: string;
   private isMoreUsers = true;
   private appState = new AppState();
-  @Output() setMyAvatarEvent = new EventEmitter();
 
   constructor(
     private storesService: StoresService,
@@ -51,8 +50,7 @@ export class StoresComponent implements OnInit {
     this.storesService.getStoresUser().subscribe(response => {
       if (response['USERS'].length === 0) {
         this.isMoreUsers = false;
-      } else {
-        this.users = response;
+      } else { this.users = response;
         this.userId = this.users['USERS'][0]['USER_ID'];
         this.imgPath = this.getUsersImage(this.users['USERS'][0]['PROFILE_IMAGE']);
         this.userName = this.users['USERS'][0]['USER_NAME'];

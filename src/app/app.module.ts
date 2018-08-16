@@ -5,8 +5,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HttpClientXsrfModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
-import { NgxAutoScrollModule } from 'ngx-auto-scroll';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { NgxAutoScrollModule } from 'ngx-auto-scroll';
 
 import {
   MatCheckboxModule,
@@ -40,6 +40,7 @@ import { AppState } from './app.state';
 import { ModifyProfComponent } from './modify-prof/modify-prof.component';
 import { ModifyProfImgComponent } from './modify-prof-img/modify-prof-img.component';
 import { DeleteAccountComponent } from './delete-account/delete-account.component';
+import { PartnerInfoComponent } from './partner-info/partner-info.component';
 
 const appRoutes: Routes = [
   { path: '', component: TopComponent },
@@ -64,13 +65,15 @@ const appRoutes: Routes = [
     ModifyProfComponent,
     ModifyProfImgComponent,
     DeleteAccountComponent,
+    PartnerInfoComponent,
   ],
   entryComponents: [
     AuthorizationComponent,
     MatchingComponent,
     ModifyProfComponent,
     ModifyProfImgComponent,
-    DeleteAccountComponent
+    DeleteAccountComponent,
+    PartnerInfoComponent
   ],
   imports: [
     HttpClientModule,

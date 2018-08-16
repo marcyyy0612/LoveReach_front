@@ -1,8 +1,11 @@
 import { Component, ViewChild, Output, EventEmitter, Input, OnChanges, SimpleChanges, NgZone, OnInit } from '@angular/core';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { FormControl, Validators } from '@angular/forms';
 import { AppState } from '../app.state';
 import { MessagesService } from './messages.service';
 import { NgxAutoScroll } from 'ngx-auto-scroll';
+
+import { PartnerInfoComponent } from '../partner-info/partner-info.component';
 
 @Component({
   selector: 'app-messages',
@@ -14,6 +17,7 @@ export class MessagesComponent implements OnChanges {
 
   constructor(
     private messagesService: MessagesService,
+    public dialog: MatDialog
   ) {}
 
   private myInfo;
@@ -52,9 +56,22 @@ export class MessagesComponent implements OnChanges {
         for (let i = 0; i < response['MESSAGES'].length; i++) {
           this.messages.push(response['MESSAGES'][i]);
         }
+        // this.forceScrollDown();
         this.appState.loadEnd();
       }
     });
+  }
+
+  showPartnerInfo(): void {
+    const dialogRef = this.dialog.open(PartnerInfoComponent, {
+      'width': '350px',
+      'height': '500px',
+      'data': {
+        name: this.partnerName,
+        img: this.partnerImg
+      }
+    });
+    dialogRef.afterClosed();
   }
 
   onSendClick(): void {

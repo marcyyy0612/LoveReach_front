@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { ProfileListService } from './profile-list.service';
 import { Router } from '@angular/router';
@@ -15,6 +15,7 @@ import { DeleteAccountComponent } from '../delete-account/delete-account.compone
 })
 export class ProfileListComponent implements OnInit {
   private appState = new AppState();
+  @Input() myInfo;
 
   constructor(
     private profileListService: ProfileListService,
@@ -47,7 +48,11 @@ export class ProfileListComponent implements OnInit {
     const dialogRef = this.dialog.open(ModifyProfComponent, {
       'width': '350px',
       'height': '500px',
-      'data': {}
+      'data': {
+        userName:  this.myInfo['USER_NAME'],
+        profile: this.myInfo['PROFILE'],
+        sex: this.myInfo['SEX']
+      }
     });
     dialogRef.afterClosed();
   }

@@ -1,8 +1,19 @@
-.store {
-  background-color: #F5F7FA;
-  position: relative;
-  width: 100%;
-  height: 100vh;
+@media only screen and (max-width: 800px) {
+  .store {
+    background-color: #F5F7FA;
+    position: relative;
+    width: 100%;
+    height: 95vh;
+  }
+}
+
+@media only screen and (min-width: 801px) {
+  .store {
+    background-color: #F5F7FA;
+    position: relative;
+    width: 100%;
+    height: 100vh;
+  }
 }
 
 @media only screen and (max-width: 800px) {

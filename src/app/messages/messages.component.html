@@ -1,41 +1,44 @@
 <div class="container"> 
-  <div class="left_wrap">
-    <mat-card class="top-area">
-      <img mat-card-avatar src="{{partnerImg}}">
-      <span>{{partnerName}}さんにメッセージを送りましょう！</span>
-      <button mat-button (click)="onBackClick()">
-        <img class="cancel-img" src="../assets/images/cancel.svg">
-      </button>
-    </mat-card> 
-    <mat-card class="message-area">
-      <div ngx-auto-scroll lock-yoffset='10' observe-attributes>
-        <div *ngFor="let message of messages"> 
-          <div *ngIf="message['USER_ID'] === myInfo['USER_ID']">
-            <mat-card class="me">
-              {{message['MESSAGE']}}
-              <div class="dateTime">
-                {{message['SEND_DATETIME']}}
-              </div>
-            </mat-card>
-          </div>
-          <div *ngIf="message['USER_ID'] !== myInfo['USER_ID']">
-            <mat-card class="partner">
-              {{message['MESSAGE']}}
-              <div class="dateTime">
-                {{message['SEND_DATETIME']}}
-              </div>
-            </mat-card>
-          </div>
+  <mat-card class="top-area">
+    <img mat-card-avatar (click)="showPartnerInfo()"  src="{{partnerImg}}">
+    <span class="sptext">{{partnerName}}さん</span>
+    <span class="pctext">{{partnerName}}さんにメッセージを送りましょう！</span>
+    <button mat-button class="cancel-button" (click)="onBackClick()">
+      <img class="cancel-img" src="../assets/images/cancel.svg">
+    </button>
+  </mat-card> 
+  <mat-card id="message-area" class="message-area">
+    <div *ngFor="let message of messages"> 
+      <div ngx-auto-scroll lock-y-offset="10" observe-attributes>
+        <div *ngIf="message['USER_ID'] === myInfo['USER_ID']">
+          <mat-card class="me">
+            {{message['MESSAGE']}}
+            <div class="dateTime">
+              {{message['SEND_DATETIME']}}
+            </div>
+          </mat-card>
+        </div>
+        <div *ngIf="message['USER_ID'] !== myInfo['USER_ID']">
+          <mat-card class="partner">
+            {{message['MESSAGE']}}
+            <div class="dateTime">
+              {{message['SEND_DATETIME']}}
+            </div>
+          </mat-card>
         </div>
       </div>
-    </mat-card>
-    <mat-card class="bottom-area">
-      <form>
-        <input matInput class="input-area" name="message" placeholder="メッセージを入力..." [(ngModel)]="sendMessage" autocomplete="off" required>
-        <button mat-button class="send-button" (click)="onSendClick()">送信</button>
-      </form>
-    </mat-card>
-  </div>
+    </div>
+  </mat-card>
+  <mat-card class="bottom-area">
+    <form>
+      <textarea matInput class="input-area"
+                         cdkTextareaAutosize
+                         #autosize="cdkTextareaAutosize"
+                         cdkAutosizeMinRows="2"
+                         cdkAutosizeMaxRows="3" name="message" placeholder="メッセージを入力..." [(ngModel)]="sendMessage" (keydown.meta.enter)="onSendClick()" required></textarea>
+      <button mat-button class="send-button" (click)="onSendClick()">送信</button>
+    </form>
+  </mat-card>
 </div>
 <div class="loading" *ngIf="appState.loading">
   <mat-spinner></mat-spinner>
